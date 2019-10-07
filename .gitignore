@@ -1,0 +1,6 @@
+config/
+node_modules/
+events/
+*.js
+*.map
+out.md

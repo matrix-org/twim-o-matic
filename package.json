@@ -1,0 +1,17 @@
+{
+  "name": "twim-o-matic",
+  "version": "0.0.1",
+  "description": "Can be used to help produce new editions of This Week in Matrix",
+  "main": "watch.js",
+  "dependencies": {
+    "matrix-bot-sdk": "^0.3.9",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "https://github.com/benparsons",
+  "license": "MIT"
+}
