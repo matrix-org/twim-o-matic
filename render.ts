@@ -14,7 +14,6 @@ const accessToken = require("./config/access_token.json").accessToken;
 const userId = require("./config/access_token.json").userId;
 const senders = require("./config/senders.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
-const eventsFile = 'events/events-2019-10-04T14:09:39.589Z.txt';
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
@@ -70,13 +69,15 @@ function handleEvent(event, title) {
     body = body.replace("@twim:cadair.com", "");
     body = body.replace(/^TWIM /gm, "");
     body = body.replace(/^TWIM\n/gm, "");
+    body = body.trim();
 
     // next determine the section
     var section = 'todo';
     var bodyLower = body.toLowerCase();
     if (bodyLower.includes("ansible")) {
         section = "ops";
-    } else if (bodyLower.includes("synapse")) {
+    } else if (bodyLower.includes("synapse" ||
+        bodyLower.includes("dendrite"))) {
         section = "servers";
     } else if (bodyLower.includes("fluffychat") ||
         bodyLower.includes("fractal") ||
@@ -109,7 +110,13 @@ function handleEvent(event, title) {
 
     // set the title line
     var titleLine:string = "";
-    if (section === sections.thoughts) {
+    if (body[0] === '#') {
+        const bodyLines = body.split('\n');
+        titleLine = `##${bodyLines[0]}\n\n`
+        bodyLines.shift();
+        body = bodyLines.join('\n')
+    }
+    else if (section === sections.thoughts) {
         titleLine = "";
     } else {
         titleLine = `### ${title} ${score}\n\n`;
@@ -209,8 +216,14 @@ function generateSection(section) {
 }
 
 async function main() {
-    var eventsFileContents = readFileSync(eventsFile, 'utf-8').split('\n');
-    for(var line of eventsFileContents) {
+
+    var eventsFiles = readdirSync('./events').filter(fn => fn.startsWith(`events-${(new Date()).toISOString().substring(0, 10)}`));
+    var eventsToHandle = [];
+    eventsFiles.forEach(fn => {
+        var fileContentsArr = readFileSync(`events/${fn}`, 'utf-8').split('\n');
+        eventsToHandle = eventsToHandle.concat(fileContentsArr);
+    })
+    for(var line of eventsToHandle) {
         if (line.length === 0) continue;
         try {
             handleEvent(await getEvent(line), "TODO")
