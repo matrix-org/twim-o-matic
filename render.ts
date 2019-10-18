@@ -155,6 +155,11 @@ function handleEvent(event, title) {
     // * for lists, not -, get over it
     body = body.replace(/^> -/gm, "> *");
 
+    // insert matrix.to links for rooms
+    const regex = /(#([a-z.-]+):([a-z.-]+)\b)/g;
+    const subst = `[$1](https://matrix.to/#/$1)`;
+    body = body.replace(regex, subst);
+
     // trim the lot
     body = body.trim();
 
