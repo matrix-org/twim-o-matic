@@ -47,7 +47,8 @@ function generateSignOff() {
         "See you next week, and be sure to stop by [#twim:matrix.org] with your updates!",
         "So that's all I have to say to you right now! See you next week, and be sure to stop by [#twim:matrix.org] with your updates!"
     ];
-    return `${title}\n\n${messages[0]}\n`;
+    const urls = `[#TWIM:matrix.org]: https://matrix.to/#/#TWIM:matrix.org`;
+    return `${title}\n\n${messages[0]}\n\n${urls}\n`;
 }
 
 var output = {};
@@ -74,7 +75,8 @@ function handleEvent(event, title) {
     // next determine the section
     var section = 'todo';
     var bodyLower = body.toLowerCase();
-    if (bodyLower.includes("ansible")) {
+    if (bodyLower.includes("ansible") ||
+        bodyLower.includes("helm")) {
         section = "ops";
     } else if (bodyLower.includes("synapse" ||
         bodyLower.includes("dendrite"))) {
@@ -84,7 +86,8 @@ function handleEvent(event, title) {
         bodyLower.includes("riot")) {
         section = "clients";
     } else if (bodyLower.includes("bridge") ||
-        bodyLower.includes("appservice")) {
+        bodyLower.includes("appservice") ||
+        bodyLower.includes("bridging")) {
         section = "bridges";            
     } else if (bodyLower.includes("bot")) {
         section = "bots";
