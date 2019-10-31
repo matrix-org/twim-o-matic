@@ -1,4 +1,5 @@
 config/
+!config/access_token.sample.json
 node_modules/
 events/
 *.js
