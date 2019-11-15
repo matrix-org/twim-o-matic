@@ -83,7 +83,8 @@ function handleEvent(event, title) {
         section = "servers";
     } else if (bodyLower.includes("fluffychat") ||
         bodyLower.includes("fractal") ||
-        bodyLower.includes("riot")) {
+        bodyLower.includes("riot") ||
+        bodyLower.includes("miitrix")) {
         section = "clients";
     } else if (bodyLower.includes("bridge") ||
         bodyLower.includes("appservice") ||
@@ -189,6 +190,7 @@ function outputAll() {
     result += `## Matrix Live 🎙\n\n`;
     result += generateSection(sections.todo);
     result += generateSection(sections.status);
+    result += generateSection(sections.spec);
     result += generateSection(sections.servers);
     result += generateSection(sections.bridges);
     result += generateSection(sections.clients);
