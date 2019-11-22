@@ -1,6 +1,7 @@
 import {
     MatrixClient,
     SimpleFsStorageProvider,
+    AutojoinRoomsMixin
 } from "matrix-bot-sdk";
 import {
     writeFileSync,
@@ -13,10 +14,10 @@ const userId = require("./config/access_token.json").userId;
 const storage = new SimpleFsStorageProvider("config/twim-o-matic-reader.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
-
+AutojoinRoomsMixin.setupOnClient(client);
 client.start().then(() => console.log("Client started!"));
 
-const twimRoomId = "!FPUfgzXYWTKgIrwKxW:matrix.org";
+const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
 const activeRoom = twimRoomId;
 const watchDate = new Date().toISOString();
 
