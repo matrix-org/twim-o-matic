@@ -19,7 +19,7 @@ const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
 //client.start().then(() => console.log("Client started!"));
 
-const twimRoomId = "!FPUfgzXYWTKgIrwKxW:matrix.org";
+const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
 
 const sections = {
     todo: "TOD TODO TODO",
@@ -87,15 +87,18 @@ function handleEvent(event, title) {
         bodyLower.includes("fractal") ||
         bodyLower.includes("riot") ||
         bodyLower.includes("pattle") ||
-        bodyLower.includes("miitrix")) {
+        bodyLower.includes("miitrix") ||
+        bodyLower.includes("notepad")) {
         section = "clients";
     } else if (bodyLower.includes("bridge") ||
         bodyLower.includes("appservice") ||
-        bodyLower.includes("bridging")) {
+        bodyLower.includes("bridging") ||
+        bodyLower.includes("mautrix-facebook")) {
         section = "bridges";            
     } else if (bodyLower.includes("bot")) {
         section = "bots";
-    } else if (bodyLower.includes("client")) {
+    } else if (bodyLower.includes("client") ||
+        bodyLower.includes("lazy load")) {
         section = "clients";
     } else if (bodyLower.includes("msc")) {
         section = "spec";
@@ -105,7 +108,8 @@ function handleEvent(event, title) {
         section = "ops";
     } else if (bodyLower.includes("welcome")) {
         section = "welcome";
-    } else if (bodyLower.includes("sdk")) {
+    } else if (bodyLower.includes("sdk") ||
+        bodyLower.includes("library")) {
         section = "sdks";
     } else if (bodyLower.includes("talk") || 
         bodyLower.includes("presentation")) {
