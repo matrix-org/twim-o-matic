@@ -36,7 +36,8 @@ const sections = {
     encryption: "Dept of Encryption 🔐",
     blockchain: "Dept of Blockchain 🤷‍",
     spec: "Dept of Spec 📜",
-    welcome: "Dept of Welcomes 👐"
+    welcome: "Dept of Welcomes 👐",
+    talks: "Dept of Events and Talks 🗣"
 };
 
 const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
@@ -78,12 +79,14 @@ function handleEvent(event, title) {
     if (bodyLower.includes("ansible") ||
         bodyLower.includes("helm")) {
         section = "ops";
-    } else if (bodyLower.includes("synapse" ||
-        bodyLower.includes("dendrite"))) {
+    } else if (bodyLower.includes("synapse") ||
+        bodyLower.includes("dendrite") ||
+        bodyLower.includes("ruma")) {
         section = "servers";
     } else if (bodyLower.includes("fluffychat") ||
         bodyLower.includes("fractal") ||
         bodyLower.includes("riot") ||
+        bodyLower.includes("pattle") ||
         bodyLower.includes("miitrix")) {
         section = "clients";
     } else if (bodyLower.includes("bridge") ||
@@ -104,6 +107,9 @@ function handleEvent(event, title) {
         section = "welcome";
     } else if (bodyLower.includes("sdk")) {
         section = "sdks";
+    } else if (bodyLower.includes("talk") || 
+        bodyLower.includes("presentation")) {
+        section = "talks";
     }
     section = sections[section];
     
@@ -167,6 +173,11 @@ function handleEvent(event, title) {
     // trim the lot
     body = body.trim();
 
+    if (event.content.msgtype === "m.image") {
+        titleLine = "### TODO GET IMAGE\n\n";
+        body = event.event_id;
+    }
+
     if (!output[section]) output[section] = {};
     if (! output[section][event.event_id]) { output[section][event.event_id] = ""; }
     output[section][event.event_id] += `${titleLine}${senderLine}${body}\n`;
@@ -201,6 +212,7 @@ function outputAll() {
     result += generateSection(sections.blockchain);
     result += generateSection(sections.bots);
     result += generateSection(sections.eventvideos);
+    result += generateSection(sections.talks);
     result += generateSection(sections.welcome);
     result += generateSection(sections.thoughts);
     result += pings;
