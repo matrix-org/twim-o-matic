@@ -37,7 +37,9 @@ const sections = {
     blockchain: "Dept of Blockchain 🤷‍",
     spec: "Dept of Spec 📜",
     welcome: "Dept of Welcomes 👐",
-    talks: "Dept of Events and Talks 🗣"
+    talks: "Dept of Events and Talks 🗣",
+    projects: "Dept of Interesting Projects 🛰",
+    news: "Matrix in the News 📰"
 };
 
 const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
@@ -79,7 +81,13 @@ function handleEvent(event, title) {
     if (bodyLower.includes("ansible") ||
         bodyLower.includes("helm")) {
         section = "ops";
-    } else if (bodyLower.includes("synapse") ||
+    } else if (bodyLower.includes("spec-land") ||
+        bodyLower.includes("spec land")) {
+        section = "spec";
+    } else if (bodyLower.includes("new project")) {
+        section = "projects";
+    }    
+    else if (bodyLower.includes("synapse") ||
         bodyLower.includes("dendrite") ||
         bodyLower.includes("ruma")) {
         section = "servers";
@@ -88,6 +96,7 @@ function handleEvent(event, title) {
         bodyLower.includes("riot") ||
         bodyLower.includes("pattle") ||
         bodyLower.includes("miitrix") ||
+        bodyLower.includes("nheko") ||
         bodyLower.includes("notepad")) {
         section = "clients";
     } else if (bodyLower.includes("bridge") ||
@@ -98,14 +107,17 @@ function handleEvent(event, title) {
     } else if (bodyLower.includes("bot")) {
         section = "bots";
     } else if (bodyLower.includes("client") ||
-        bodyLower.includes("lazy load")) {
+        bodyLower.includes("lazy load") ||
+        bodyLower.includes("ios") ||
+        bodyLower.includes("android")) {
         section = "clients";
-    } else if (bodyLower.includes("msc")) {
-        section = "spec";
     } else if (bodyLower.includes("docker") ||
         bodyLower.includes("kubernetes") ||
-        bodyLower.includes("k8s")) {
+        bodyLower.includes("k8s") ||
+        bodyLower.includes("ma1sd")) {
         section = "ops";
+    } else if (bodyLower.includes("msc")) {
+        section = "spec";
     } else if (bodyLower.includes("welcome")) {
         section = "welcome";
     } else if (bodyLower.includes("sdk") ||
@@ -114,6 +126,10 @@ function handleEvent(event, title) {
     } else if (bodyLower.includes("talk") || 
         bodyLower.includes("presentation")) {
         section = "talks";
+    } else if (bodyLower.includes("article")) {
+        section = "news";
+    } else if (bodyLower.includes("github action")) {
+        section = "ops";
     }
     section = sections[section];
     
@@ -126,7 +142,7 @@ function handleEvent(event, title) {
     var titleLine:string = "";
     if (body[0] === '#') {
         const bodyLines = body.split('\n');
-        titleLine = `##${bodyLines[0]}\n\n`
+        titleLine = `###${bodyLines[0].replace(/\#/g, "")}\n\n`
         bodyLines.shift();
         body = bodyLines.join('\n')
     }
@@ -217,6 +233,8 @@ function outputAll() {
     result += generateSection(sections.bots);
     result += generateSection(sections.eventvideos);
     result += generateSection(sections.talks);
+    result += generateSection(sections.projects);
+    result += generateSection(sections.news);
     result += generateSection(sections.welcome);
     result += generateSection(sections.thoughts);
     result += pings;
