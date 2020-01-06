@@ -126,10 +126,13 @@ function handleEvent(event, title) {
     } else if (bodyLower.includes("talk") || 
         bodyLower.includes("presentation")) {
         section = "talks";
-    } else if (bodyLower.includes("article")) {
+    } else if (bodyLower.includes("article") ||
+        bodyLower.includes("newspaper")) {
         section = "news";
     } else if (bodyLower.includes("github action")) {
         section = "ops";
+    } else if (bodyLower.includes("hosting")) {
+        section = "services";
     }
     section = sections[section];
     
