@@ -133,6 +133,13 @@ function handleEvent(event, title) {
         section = "ops";
     } else if (bodyLower.includes("hosting")) {
         section = "services";
+    } else if (bodyLower.includes("matrix-media-repo") ||
+        bodyLower.includes("federation")) {
+        section = "servers";
+    } else if (bodyLower.includes("zapier") ||
+        bodyLower.includes("zammad") ||
+        bodyLower.includes("discord")) {
+        section = "bridges";
     }
     section = sections[section];
     
