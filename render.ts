@@ -39,7 +39,8 @@ const sections = {
     welcome: "Dept of Welcomes 👐",
     talks: "Dept of Events and Talks 🗣",
     projects: "Dept of Interesting Projects 🛰",
-    news: "Matrix in the News 📰"
+    news: "Matrix in the News 📰",
+    build: "Dept of *Built on Matrix* 🏗"
 };
 
 const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
