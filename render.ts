@@ -199,7 +199,10 @@ function handleEvent(event, title) {
     }
 
     // * for lists, not -, get over it
-    body = body.replace(/^> -/gm, "> *");
+    body = body.replace(/^>( )+-/gm, "> *");
+
+    // fix some missing linebreaks
+    body = body.replace(/(^> [^\*](.)+\n)> \*/mg, `$1>\n> *`);
 
     // insert matrix.to links for rooms
     const regex = /(#([a-z.-]+):([a-z.-]+)\b)/g;
