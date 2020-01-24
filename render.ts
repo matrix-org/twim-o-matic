@@ -40,7 +40,8 @@ const sections = {
     talks: "Dept of Events and Talks 🗣",
     projects: "Dept of Interesting Projects 🛰",
     news: "Matrix in the News 📰",
-    build: "Dept of *Built on Matrix* 🏗"
+    build: "Dept of *Built on Matrix* 🏗",
+    jobs: "Dept of Jobs 💰"
 };
 
 const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
@@ -141,6 +142,10 @@ function handleEvent(event, title) {
         bodyLower.includes("zammad") ||
         bodyLower.includes("discord")) {
         section = "bridges";
+    } else if (bodyLower.includes("work") ||
+        bodyLower.includes("full time") ||
+        bodyLower.includes("full-time")) {
+        section = "jobs";
     }
     section = sections[section];
     
@@ -206,7 +211,8 @@ function handleEvent(event, title) {
 
     if (event.content.msgtype === "m.image") {
         titleLine = "### TODO GET IMAGE\n\n";
-        body = event.event_id;
+        var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
+        body = event.event_id + "\n" + url;
     }
 
     if (!output[section]) output[section] = {};
@@ -245,6 +251,7 @@ function outputAll() {
     result += generateSection(sections.eventvideos);
     result += generateSection(sections.talks);
     result += generateSection(sections.projects);
+    result += generateSection(sections.jobs);
     result += generateSection(sections.news);
     result += generateSection(sections.welcome);
     result += generateSection(sections.thoughts);
