@@ -12,6 +12,7 @@ export default async function() {
             console.log('statusCode:', response.statusCode);
         }
         result += `## Dept of Ping 🏓\n\n`;
+        result += `Here we reveal, rank, and applaud the homeservers with the lowest ping, as measured by [pingbot](https://github.com/maubot/echo), a [maubot](https://github.com/maubot/maubot) that you can host on your own server. Join [#ping:maunium.net](https://matrix.to/#/#ping:maunium.net) to experience the fun live, and to find out how to add YOUR server to the game.\n\n`;
         result += `|Rank|Hostname|Median MS|\n`;
         result += `|:---:|:---:|:---:|\n`;
         const pings = JSON.parse(body).pings;
