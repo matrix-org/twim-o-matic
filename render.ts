@@ -204,6 +204,9 @@ function handleEvent(event, title) {
     // fix some missing linebreaks
     body = body.replace(/(^> [^\*](.)+\n)> \*/mg, `$1>\n> *`);
 
+    // add warning to malformed header
+    body = body.replace(/(^> #.*)/mg, `$1 TODO FIX MALFORMED HEADER`);
+
     // insert matrix.to links for rooms
     const regex = /(#([a-z.-]+):([a-z.-]+)\b)/g;
     const subst = `[$1](https://matrix.to/#/$1)`;
