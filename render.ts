@@ -46,7 +46,10 @@ const sections = {
     jobs: "Dept of Jobs 💰"
 };
 
-const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
+function getSaidBookism() {
+    const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
+    return saidBookisms[Math.floor(Math.random() * saidBookisms.length)];
+}
 
 function generateSignOff() {
     var title:string = "## That's all I know 🏁";
@@ -82,73 +85,7 @@ function handleEvent(event, title) {
     // next determine the section
     var section = 'todo';
     var bodyLower = body.toLowerCase();
-    if (bodyLower.includes("ansible") ||
-        bodyLower.includes("helm")) {
-        section = "ops";
-    } else if (bodyLower.includes("spec-land") ||
-        bodyLower.includes("spec land")) {
-        section = "spec";
-    } else if (bodyLower.includes("new project")) {
-        section = "projects";
-    }    
-    else if (bodyLower.includes("synapse") ||
-        bodyLower.includes("dendrite") ||
-        bodyLower.includes("ruma")) {
-        section = "servers";
-    } else if (bodyLower.includes("fluffychat") ||
-        bodyLower.includes("fractal") ||
-        bodyLower.includes("riot") ||
-        bodyLower.includes("pattle") ||
-        bodyLower.includes("miitrix") ||
-        bodyLower.includes("nheko") ||
-        bodyLower.includes("notepad")) {
-        section = "clients";
-    } else if (bodyLower.includes("bridge") ||
-        bodyLower.includes("appservice") ||
-        bodyLower.includes("bridging") ||
-        bodyLower.includes("mautrix-facebook")) {
-        section = "bridges";            
-    } else if (bodyLower.includes("bot")) {
-        section = "bots";
-    } else if (bodyLower.includes("client") ||
-        bodyLower.includes("lazy load") ||
-        bodyLower.includes("ios") ||
-        bodyLower.includes("android")) {
-        section = "clients";
-    } else if (bodyLower.includes("docker") ||
-        bodyLower.includes("kubernetes") ||
-        bodyLower.includes("k8s") ||
-        bodyLower.includes("ma1sd")) {
-        section = "ops";
-    } else if (bodyLower.includes("msc")) {
-        section = "spec";
-    } else if (bodyLower.includes("welcome")) {
-        section = "welcome";
-    } else if (bodyLower.includes("sdk") ||
-        bodyLower.includes("library")) {
-        section = "sdks";
-    } else if (bodyLower.includes("talk") || 
-        bodyLower.includes("presentation")) {
-        section = "talks";
-    } else if (bodyLower.includes("article") ||
-        bodyLower.includes("newspaper")) {
-        section = "news";
-    } else if (bodyLower.includes("github action")) {
-        section = "ops";
-    } else if (bodyLower.includes("hosting")) {
-        section = "services";
-    } else if (bodyLower.includes("matrix-media-repo") ||
-        bodyLower.includes("federation")) {
-        section = "servers";
-    } else if (bodyLower.includes("zapier") ||
-        bodyLower.includes("zammad") ||
-        bodyLower.includes("discord")) {
-        section = "bridges";
-    } else if (bodyLower.includes("work") ||
-        bodyLower.includes("full time") ||
-        bodyLower.includes("full-time")) {
-        section = "jobs";
-    }
+    section = getSection(bodyLower, section);
     section = sections[section];
     
     // find the score (sum of all reactions)
@@ -191,7 +128,7 @@ function handleEvent(event, title) {
         } else {
             senderLine = `TODO MISSING NAME [${event.sender}](https://matrix.to/#/${event.sender})`;
         }
-        senderLine += ` ${saidBookisms[Math.floor(Math.random() * saidBookisms.length)]}:\n\n`;
+        senderLine += ` ${getSaidBookism()}:\n\n`;
     }
 
     // massage the body text where needed
@@ -231,6 +168,94 @@ function handleEvent(event, title) {
     output[section][event.event_id] += `${titleLine}${senderLine}${body}\n`;
 }
 
+function getSection(bodyLower: any, section: string) {
+    if (bodyLower.includes("ansible") ||
+        bodyLower.includes("helm")) {
+        section = "ops";
+    }
+    else if (bodyLower.includes("spec-land") ||
+        bodyLower.includes("spec land")) {
+        section = "spec";
+    }
+    else if (bodyLower.includes("new project")) {
+        section = "projects";
+    }
+    else if (bodyLower.includes("synapse") ||
+        bodyLower.includes("dendrite") ||
+        bodyLower.includes("ruma")) {
+        section = "servers";
+    }
+    else if (bodyLower.includes("fluffychat") ||
+        bodyLower.includes("fractal") ||
+        bodyLower.includes("riot") ||
+        bodyLower.includes("pattle") ||
+        bodyLower.includes("miitrix") ||
+        bodyLower.includes("nheko") ||
+        bodyLower.includes("notepad")) {
+        section = "clients";
+    }
+    else if (bodyLower.includes("bridge") ||
+        bodyLower.includes("appservice") ||
+        bodyLower.includes("bridging") ||
+        bodyLower.includes("mautrix-facebook")) {
+        section = "bridges";
+    }
+    else if (bodyLower.includes("bot")) {
+        section = "bots";
+    }
+    else if (bodyLower.includes("client") ||
+        bodyLower.includes("lazy load") ||
+        bodyLower.includes("ios") ||
+        bodyLower.includes("android")) {
+        section = "clients";
+    }
+    else if (bodyLower.includes("docker") ||
+        bodyLower.includes("kubernetes") ||
+        bodyLower.includes("k8s") ||
+        bodyLower.includes("ma1sd")) {
+        section = "ops";
+    }
+    else if (bodyLower.includes("msc")) {
+        section = "spec";
+    }
+    else if (bodyLower.includes("welcome")) {
+        section = "welcome";
+    }
+    else if (bodyLower.includes("sdk") ||
+        bodyLower.includes("library")) {
+        section = "sdks";
+    }
+    else if (bodyLower.includes("talk") ||
+        bodyLower.includes("presentation")) {
+        section = "talks";
+    }
+    else if (bodyLower.includes("article") ||
+        bodyLower.includes("newspaper")) {
+        section = "news";
+    }
+    else if (bodyLower.includes("github action")) {
+        section = "ops";
+    }
+    else if (bodyLower.includes("hosting")) {
+        section = "services";
+    }
+    else if (bodyLower.includes("matrix-media-repo") ||
+        bodyLower.includes("federation")) {
+        section = "servers";
+    }
+    else if (bodyLower.includes("zapier") ||
+        bodyLower.includes("zammad") ||
+        bodyLower.includes("discord")) {
+        section = "bridges";
+    }
+    else if (bodyLower.includes("work") ||
+        bodyLower.includes("full time") ||
+        bodyLower.includes("full-time")) {
+        section = "jobs";
+    }
+    return section;
+}
+
 async function downloadImage (url, path) {  
     const writer = createWriteStream(path);
   
@@ -246,11 +271,11 @@ async function downloadImage (url, path) {
       writer.on('finish', resolve)
       writer.on('error', reject)
     })
-  }
+}
 
 function manualAddEvent(title, text, section) {
     const titleLine = `### ${title}\n\n`;
-    const senderLine:String = `TODO ${saidBookisms[0]}:\n\n`;
+    const senderLine:String = `TODO ${getSaidBookism()}:\n\n`;
     const body = text.replace(/^/gm, `> `);
     if (!output[section]) output[section] = {};
     output[section][title] = `${titleLine}${senderLine}${body}\n\n`;
