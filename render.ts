@@ -168,9 +168,8 @@ function handleEvent(event, title) {
         body = `![${filename}](blog/img/${filename})`;
     }
 
-    if (!output[section]) output[section] = {};
-    if (! output[section][event.event_id]) { output[section][event.event_id] = ""; }
-    output[section][event.event_id] += `${titleLine}${senderLine}${body}\n`;
+    if (!output[section]) output[section] = [];
+    output[section].push({score: score, content:`${titleLine}${senderLine}${body}\n`});
 }
 
 function getSection(bodyLower: any, section: string) {
@@ -329,8 +328,9 @@ function generateSection(section) {
 
     var result:string = "";
     result += `## ${section}\n\n`;
-    Object.keys(output[section]).forEach(event_id => {
-        result += `${output[section][event_id]}\n`;
+    output[section].sort(( a, b ) => a.score > b.score ? -1 : 1 );
+    output[section].forEach(part => {
+        result += `${part.content}\n`;
     });
     return result;
 }
