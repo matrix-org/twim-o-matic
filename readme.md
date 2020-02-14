@@ -7,7 +7,8 @@ Install everything from npm and setup needed dirs:
 ```bash
 npm i
 mkdir events
-mkdir config
+mkdir blog
+mkdir blog/img
 ```
 
 To use, create a file at `config/access_token.json` and include three fields:
