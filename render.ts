@@ -51,6 +51,10 @@ function getSaidBookism() {
     return saidBookisms[Math.floor(Math.random() * saidBookisms.length)];
 }
 
+function ds() {
+    return (new Date()).toISOString().substring(0, 10);
+}
+
 function generateSignOff() {
     var title:string = "## That's all I know 🏁";
     const messages = [
@@ -159,8 +163,9 @@ function handleEvent(event, title) {
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
         var filename = body.replace('> ', '');
-        downloadImage(url, `images/${filename}`);
-        body = `![image](images/${filename})`;
+        filename = `${ds()}-${filename}`;
+        downloadImage(url, `blog/img/${filename}`);
+        body = `![${filename}](blog/img/${filename})`;
     }
 
     if (!output[section]) output[section] = {};
@@ -332,7 +337,7 @@ function generateSection(section) {
 
 async function main() {
 
-    var eventsFiles = readdirSync('./events').filter(fn => fn.startsWith(`events-${(new Date()).toISOString().substring(0, 10)}`));
+    var eventsFiles = readdirSync('./events').filter(fn => fn.startsWith(`events-${ds()}`));
     var eventsToHandle = [];
     eventsFiles.forEach(fn => {
         var fileContentsArr = readFileSync(`events/${fn}`, 'utf-8').split('\n');
@@ -355,8 +360,3 @@ async function main() {
 }
 
 main();
-
-
-
-
-
