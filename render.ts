@@ -22,7 +22,7 @@ const client = new MatrixClient(homeserverUrl, accessToken, storage);
 const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
 
 const sections = {
-    todo: "TOD TODO TODO",
+    todo: "TOD UNKNOWN SECTION",
     status: "Dept of *Status of Matrix* 🌡",
     servers: "Dept of Servers 🏢",
     bridges: "Dept of Bridges 🌉",
@@ -160,7 +160,8 @@ function handleEvent(event, title) {
         const bodyLines = body.split('\n');
         titleLine = `###${bodyLines[0].replace(/\#/g, "")}\n\n`
         bodyLines.shift();
-        body = bodyLines.join('\n')
+        body = bodyLines.join('\n');
+        body = body.trim();
     }
     else if (section === sections.thoughts) {
         titleLine = "";
@@ -186,7 +187,7 @@ function handleEvent(event, title) {
                 senderLine += `(https://matrix.to/#/${event.sender})`;
             }
         } else {
-            senderLine = `[${event.sender}](https://matrix.to/#/${event.sender})`;
+            senderLine = `TODO MISSING NAME [${event.sender}](https://matrix.to/#/${event.sender})`;
         }
         senderLine += ` ${saidBookisms[Math.floor(Math.random() * saidBookisms.length)]}:\n\n`;
     }
