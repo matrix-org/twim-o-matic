@@ -2,6 +2,7 @@ config/
 !config/access_token.sample.json
 node_modules/
 events/
+images/
 *.js
 *.map
 out.md

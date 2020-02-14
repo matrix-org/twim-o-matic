@@ -6,8 +6,10 @@ import {
     readdirSync,
     readFileSync,
     writeFileSync,
+    createWriteStream
 } from "fs";
 import ping from "./ping";
+const axios = require('axios').default;
 
 const homeserverUrl = require("./config/access_token.json").homeserver;
 const accessToken = require("./config/access_token.json").accessToken;
@@ -219,13 +221,32 @@ function handleEvent(event, title) {
     if (event.content.msgtype === "m.image") {
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
-        body = event.event_id + "\n" + url;
+        var filename = body.replace('> ', '');
+        downloadImage(url, `images/${filename}`);
+        body = `![image](images/${filename})`;
     }
 
     if (!output[section]) output[section] = {};
     if (! output[section][event.event_id]) { output[section][event.event_id] = ""; }
     output[section][event.event_id] += `${titleLine}${senderLine}${body}\n`;
 }
+
+async function downloadImage (url, path) {  
+    const writer = createWriteStream(path);
+  
+    const response = await axios({
+      url,
+      method: 'GET',
+      responseType: 'stream'
+    })
+  
+    response.data.pipe(writer)
+  
+    return new Promise((resolve, reject) => {
+      writer.on('finish', resolve)
+      writer.on('error', reject)
+    })
+  }
 
 function manualAddEvent(title, text, section) {
     const titleLine = `### ${title}\n\n`;
@@ -269,7 +290,7 @@ function outputAll() {
     const regex = /([^(])(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*))/mg;
     const subst = `$1<$2>`;
     result = result.replace(regex, subst);
-    console.log(result);
+    //console.log(result);
     writeFileSync("out.md", result);
 }
 
