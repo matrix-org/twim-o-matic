@@ -67,6 +67,8 @@ function generateSignOff() {
 
 var output = {};
 var pings = "";
+var prevSection = "";
+var prevSender = "";
 
 async function getEvent(eventId) {
     var event = await client.getEvent(twimRoomId, eventId);
@@ -74,6 +76,8 @@ async function getEvent(eventId) {
 }
 
 function handleEvent(event, title) {
+    var written = false;
+
     // first extract the body content
     var body = event.content.body;
     // remove the various TWIM markers
@@ -166,7 +170,16 @@ function handleEvent(event, title) {
         filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
         downloadImage(url, `blog/img/${filename}`);
         body = `![${filename}](blog/img/${filename})`;
+        if (prevSender === event.sender) {
+            output[prevSection][output[prevSection].length-1].content += "\n" + body;
+            written = true;
+        }
+    } else {
+        prevSection = section;
+        prevSender = event.sender;
     }
+
+    if (written) return;
 
     if (!output[section]) output[section] = [];
     output[section].push({score: score, content:`${titleLine}${senderLine}${body}\n`});
