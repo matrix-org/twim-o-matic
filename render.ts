@@ -163,7 +163,7 @@ function handleEvent(event, title) {
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
         var filename = body.replace('> ', '');
-        filename = `${ds()}-${filename}`;
+        filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
         downloadImage(url, `blog/img/${filename}`);
         body = `![${filename}](blog/img/${filename})`;
     }
