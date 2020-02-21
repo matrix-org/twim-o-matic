@@ -166,12 +166,12 @@ function handleEvent(event, title) {
     if (event.content.msgtype === "m.image") {
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
-        var filename = body.replace('> ', '').replace(/ /g, " ");
+        var filename = body.replace('> ', '').replace(/ /g, "");
         filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
         downloadImage(url, `blog/img/${filename}`);
         body = `![${filename}](blog/img/${filename})`;
         if (prevSender === event.sender) {
-            output[prevSection][output[prevSection].length-1].content += "\n" + body;
+            output[prevSection][output[prevSection].length-1].content += `\n${body}\n`;
             written = true;
         }
     } else {
