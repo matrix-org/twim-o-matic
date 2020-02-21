@@ -208,7 +208,8 @@ function getSection(bodyLower: any, section: string) {
         bodyLower.includes("pattle") ||
         bodyLower.includes("miitrix") ||
         bodyLower.includes("nheko") ||
-        bodyLower.includes("notepad")) {
+        bodyLower.includes("notepad") ||
+        bodyLower.includes("gomuks")) {
         section = "clients";
     }
     else if (bodyLower.includes("bridge") ||
