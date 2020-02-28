@@ -164,7 +164,7 @@ function handleEvent(event, title) {
     // trim the lot
     body = body.trim();
 
-    if (event.content.msgtype === "m.image") {
+    if (["m.video", "m.image"].includes(event.content.msgtype)) {
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
         var filename = body.replace('> ', '').replace(/ /g, "");
