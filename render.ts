@@ -144,7 +144,7 @@ function handleEvent(event, title) {
     body = body.replace(/(^> [^\*](.)+\n)> \*/mg, `$1>\n> *`);
 
     // add warning to malformed header
-    body = body.replace(/(^> )(#.*)/mg, `$1###$2 TODO CHECK HEADER`);
+    body = body.replace(/(^> )(#) (.*)/mg, `$1###$2 $3 TODO CHECK HEADER`);
 
     // insert matrix.to links for rooms
     const regex = /(#([a-z.-]+):([a-z.-]+)\b)/g;
