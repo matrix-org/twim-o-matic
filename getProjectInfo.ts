@@ -9,6 +9,11 @@ export default function (body: string) {
 
     if (body.includes("simplematrixlib")) sections["sdks"]++;
     if (body.includes("py-matrix-utils")) sections["sdks"]++;
+    if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
+    if (body.includes("multi arch synapse docker image")) sections["synapse-deployment"]++;
+    if (body.includes("synapse docker")) sections["synapse-deployment"]++;
+    if (body.includes("docker")) sections["ops"]++;
+    if (body.includes("synapse")) sections["servers"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {
