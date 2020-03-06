@@ -3,5 +3,7 @@
         "summary": "[mx-puppet-discord](https://github.com/matrix-discord/mx-puppet-discord) is a (double)puppeting and relay bridge for discord, based on mx-puppet-bridge"
     },
     "matrix-media-repo": {},
-    "multi arch synapse docker image": {}
+    "multi arch synapse docker image": {},
+    "Matrix Notepad": {},
+    "simplematrixlib": {}
 }

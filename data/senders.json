@@ -56,5 +56,9 @@
     "@jaywink:federator.dev": {"name": "jaywink"},
     "@kb1rd:kb1rd.net": {"name": "KB1RD"},
     "@nixo:nixo.xyz": {"name": "nixo"},
-    "@MTRNord:matrix.ffslfl.net": {"name": "MTRNord"}
+    "@MTRNord:matrix.ffslfl.net": {"name": "MTRNord"},
+    "@annie:ditto.chat": {"name": "Annie"},
+    "@msirringhaus:mozilla.org": {"name": "msirringhaus"},
+    "@murz:ru-matrix.org": {"name": "Alexey"},
+    "@mymindstorm:evermiss.net": {"name": "mymindstorm"}
 }

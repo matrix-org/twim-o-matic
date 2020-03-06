@@ -15,6 +15,7 @@ export default function (body: string) {
     if (body.includes("image for synapse")) sections["synapse-deployment"]++;
     if (body.includes("docker")) sections["ops"]++;
     if (body.includes("synapse")) sections["servers"]++;
+    if (body.includes("notepad")) sections["projects"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {
