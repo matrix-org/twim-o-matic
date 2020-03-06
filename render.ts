@@ -15,7 +15,7 @@ const axios = require('axios').default;
 const homeserverUrl = require("./config/access_token.json").homeserver;
 const accessToken = require("./config/access_token.json").accessToken;
 const userId = require("./config/access_token.json").userId;
-const senders = require("./config/senders.json");
+const senders = require("./data/senders.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
