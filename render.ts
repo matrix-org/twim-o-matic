@@ -10,6 +10,7 @@ import {
 } from "fs";
 import ping from "./ping";
 import getSection from "./getSection";
+import getProjectInfo from "./getProjectInfo";
 const axios = require('axios').default;
 
 const homeserverUrl = require("./config/access_token.json").homeserver;
@@ -73,7 +74,12 @@ function handleEvent(event, title) {
     // next determine the section
     var section = 'todo';
     var bodyLower = body.toLowerCase();
-    section = getSection(bodyLower, section);
+    var projectInfo = getProjectInfo(bodyLower);
+    if (projectInfo.section) {
+        section = projectInfo.section;
+    } else {
+        section = getSection(bodyLower, section);
+    }
     section = sections[section];
     
     // find the score (sum of all reactions)
