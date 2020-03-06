@@ -25,7 +25,7 @@ const client = new MatrixClient(homeserverUrl, accessToken, storage);
 const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
 
 const sections = {
-    todo: "TOD UNKNOWN SECTION",
+    todo: "TODO UNKNOWN SECTION",
     status: "Dept of *Status of Matrix* 🌡",
     servers: "Dept of Servers 🏢",
     bridges: "Dept of Bridges 🌉",
