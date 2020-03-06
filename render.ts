@@ -98,6 +98,10 @@ function handleEvent(event, title) {
     }
     else if (section === sections.thoughts) {
         titleLine = "";
+    }
+    else if (projectInfo.project) {
+        title = projectInfo.project;
+        titleLine = `### ${title}\n\n`;
     } else {
         titleLine = `### ${title} ${score}\n\n`;
     }
