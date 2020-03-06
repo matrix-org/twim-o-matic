@@ -18,6 +18,7 @@ const accessToken = require("./config/access_token.json").accessToken;
 const userId = require("./config/access_token.json").userId;
 const senders = require("./data/senders.json");
 const sections = require("./data/sections.json");
+const projects = require("./data/projects.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
@@ -173,11 +174,26 @@ function handleEvent(event, title) {
     if (written) return;
 
     if (!output[section]) output[section] = [];
+
     var debugText = "";
     if (debug) {
         debugText = JSON.stringify(projectInfo) + `\n\n`;
     }
-    output[section].push({score: score, content:`${titleLine}${debugText}${senderLine}${body}\n`});
+
+    var projectLine:string = "";
+    if (projectInfo.project && 
+        projects[projectInfo.project] &&
+        projects[projectInfo.project].summary) {
+            projectLine = projects[projectInfo.project].summary + `\n\n`;
+        }
+    else if (debug) {
+        projectLine = `TODO MISSING SUMMARY LINE\n\n`;
+    }
+
+    output[section].push({
+        score: score,
+        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n`
+    });
 }
 
 async function downloadImage (url, path) {  
