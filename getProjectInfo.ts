@@ -12,6 +12,7 @@ export default function (body: string) {
     if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
     if (body.includes("multi arch synapse docker image")) sections["synapse-deployment"]++;
     if (body.includes("synapse docker")) sections["synapse-deployment"]++;
+    if (body.includes("image for synapse")) sections["synapse-deployment"]++;
     if (body.includes("docker")) sections["ops"]++;
     if (body.includes("synapse")) sections["servers"]++;
     
