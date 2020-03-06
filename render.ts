@@ -21,6 +21,7 @@ const sections = require("./data/sections.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
+const debug = true;
 
 //client.start().then(() => console.log("Client started!"));
 
@@ -172,7 +173,11 @@ function handleEvent(event, title) {
     if (written) return;
 
     if (!output[section]) output[section] = [];
-    output[section].push({score: score, content:`${titleLine}${senderLine}${body}\n`});
+    var debugText = "";
+    if (debug) {
+        debugText = JSON.stringify(projectInfo) + `\n\n`;
+    }
+    output[section].push({score: score, content:`${titleLine}${debugText}${senderLine}${body}\n`});
 }
 
 async function downloadImage (url, path) {  
