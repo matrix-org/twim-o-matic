@@ -16,6 +16,7 @@ const homeserverUrl = require("./config/access_token.json").homeserver;
 const accessToken = require("./config/access_token.json").accessToken;
 const userId = require("./config/access_token.json").userId;
 const senders = require("./data/senders.json");
+const sections = require("./data/sections.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
@@ -24,28 +25,6 @@ const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
 const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
 
-const sections = {
-    todo: "TODO UNKNOWN SECTION",
-    status: "Dept of *Status of Matrix* 🌡",
-    servers: "Dept of Servers 🏢",
-    bridges: "Dept of Bridges 🌉",
-    services: "Dept of Services 🚀",
-    ops: "Dept of Ops 🛠",
-    clients: "Dept of Clients 📱",
-    bots: "Dept of Bots 🤖",
-    thoughts: "Final Thoughts 💭",
-    eventvideos: "Dept of Event Videos 📹",
-    sdks: "Dept of SDKs and Frameworks 🧰",
-    encryption: "Dept of Encryption 🔐",
-    blockchain: "Dept of Blockchain 🤷‍",
-    spec: "Dept of Spec 📜",
-    welcome: "Dept of Welcomes 👐",
-    talks: "Dept of Events and Talks 🗣",
-    projects: "Dept of Interesting Projects 🛰",
-    news: "Matrix in the News 📰",
-    build: "Dept of *Built on Matrix* 🏗",
-    jobs: "Dept of Jobs 💰"
-};
 
 function getSaidBookism() {
     const saidBookisms = ["said", "announced", "told us", "reported", "offered"];
