@@ -60,5 +60,10 @@
     "@annie:ditto.chat": {"name": "Annie"},
     "@msirringhaus:mozilla.org": {"name": "msirringhaus"},
     "@murz:ru-matrix.org": {"name": "Alexey"},
+    "@krille:ubports.chat": {"name": "krille"},
+    "@gergely:polonkai.eu": {"name": "gergely"},
+    "@ptman:kapsi.fi": {"name": "Paul"},
+    "@valere35:matrix.org": {"name": "valere"},
+    "@pwr22:shortestpath.dev": {"name": "Peter Roberts"},
     "@mymindstorm:evermiss.net": {"name": "mymindstorm"}
 }
