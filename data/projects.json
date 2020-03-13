@@ -11,5 +11,8 @@
     },
     "nheko": {
         "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at"
-    }
+    },
+    "FluffyChat": {},
+    "Quotient": {},
+    "auto-invite-matrix-bot": {}
 }
