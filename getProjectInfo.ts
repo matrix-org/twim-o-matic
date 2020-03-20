@@ -16,6 +16,9 @@ export default function (body: string) {
     if (body.includes("docker")) sections["ops"]++;
     if (body.includes("synapse")) sections["servers"]++;
     if (body.includes("notepad")) sections["projects"]++;
+    if (body.includes("fluffy")) sections["clients"]++;
+    if (body.includes("bot")) sections["bots"]++;
+    if (body.includes("gsoc")) sections["status"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {

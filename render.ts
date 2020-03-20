@@ -22,7 +22,7 @@ const projects = require("./data/projects.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
-const debug = true;
+const debug = false;
 
 //client.start().then(() => console.log("Client started!"));
 
