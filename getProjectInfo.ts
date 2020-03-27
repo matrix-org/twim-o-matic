@@ -19,6 +19,7 @@ export default function (body: string) {
     if (body.includes("fluffy")) sections["clients"]++;
     if (body.includes("bot")) sections["bots"]++;
     if (body.includes("gsoc")) sections["status"]++;
+    if (body.includes("homeserver")) sections["servers"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {
