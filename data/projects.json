@@ -9,6 +9,9 @@
     "mx-puppet-bridge": {
         "summary": "[mx-puppet-bridge](https://github.com/Sorunome/mx-puppet-bridge) is a general bridging library that supports (double)bridging and relays. The goal is to make it as easy as possible for others to bridge new third-party protocols to matrix. [Support room](https://matrix.to/#/#mx-puppet-bridge:sorunome.de) [Donate](https://liberapay.com/Sorunome)"
     },
+    "mx-puppet-voipms" : {
+        "summary": "[mx-puppet-voipms](https://github.com/zoenb/mx-puppet-voipms) is a puppeting bridge for the SMS functionallity provided by [voip.ms](https://voip.ms). It is based on [mx-puppet-bridge](https://github.com/Sorunome/mx-puppet-bridge)."
+    },
     "nheko": {
         "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at"
     },

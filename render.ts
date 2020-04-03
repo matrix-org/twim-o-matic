@@ -80,7 +80,7 @@ function handleEvent(event, title) {
     if (projectInfo.section) {
         section = projectInfo.section;
     } else {
-        section = getSection(bodyLower, section);
+        //section = getSection(bodyLower, section);
     }
     section = sections[section];
     
@@ -145,7 +145,10 @@ function handleEvent(event, title) {
     body = body.replace(/(^> [^\*](.)+\n)> \*/mg, `$1>\n> *`);
 
     // add warning to malformed header
-    body = body.replace(/(^> )(#) (.*)/mg, `$1###$2 $3 TODO CHECK HEADER`);
+    body = body.replace(/(^> )(#) (.*)/mg, `$1###$2 $3`);
+
+    // insert missing gapped `>` after quoted headers
+    body = body.replace(/(^> #*.*)\n>[^\n]/gm, `$1\n>\n> `);
 
     // insert matrix.to links for rooms
     const regex = /(#([a-z.-]+):([a-z.-]+)\b)/g;
@@ -245,6 +248,7 @@ function outputAll() {
     result += generateSection(sections.eventvideos);
     result += generateSection(sections.talks);
     result += generateSection(sections.projects);
+    result += generateSection(sections.hackathons);
     result += generateSection(sections.jobs);
     result += generateSection(sections.news);
     result += generateSection(sections.rooms);
