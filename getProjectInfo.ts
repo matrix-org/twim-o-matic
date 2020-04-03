@@ -20,6 +20,13 @@ export default function (body: string) {
     if (body.includes("bot")) sections["bots"]++;
     if (body.includes("gsoc")) sections["status"]++;
     if (body.includes("homeserver")) sections["servers"]++;
+    if (body.includes("rooms")) sections["rooms"]++;
+    if (body.includes("transcript")) sections["news"]++;
+    if (body.includes("client")) sections["clients"]++;
+    if (body.includes("scrolling")) sections["clients"]++;
+    if (body.includes("kubernetes")) sections["ops"]++;
+    if (body.includes("nheko")) sections["clients"]++;
+    if (body.includes("thumbnail")) sections["clients"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {
@@ -35,8 +42,15 @@ export default function (body: string) {
         }
     });
 
+    Object.keys(sections).forEach(key => {
+        if (sections[key] === 0 ) {
+            delete sections[key];
+        }
+    });
+
     return {
         project: project,
-        section: section
+        section: section,
+        scores: sections
     }
 }

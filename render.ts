@@ -247,6 +247,7 @@ function outputAll() {
     result += generateSection(sections.projects);
     result += generateSection(sections.jobs);
     result += generateSection(sections.news);
+    result += generateSection(sections.rooms);
     result += generateSection(sections.welcome);
     result += generateSection(sections.thoughts);
     result += pings;

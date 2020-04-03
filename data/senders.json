@@ -66,5 +66,8 @@
     "@uhoreg:matrix.org": {"name": "uhoreg"},
     "@valere35:matrix.org": {"name": "valere"},
     "@ctskarl:matrix.org": {"name": "Karl"},
+    "@miruka:matrix.org": {"name": "miruka"},
+    "@nico:ungleich.ch": {"name": "nico"},
+    "@andrewsh:matrix.org": {"name": "andrewsh"},
     "@wilko:pattle.im": {"name": "Wilko"}
 }

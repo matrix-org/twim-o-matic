@@ -14,5 +14,8 @@
     },
     "FluffyChat": {},
     "Quotient": {},
-    "auto-invite-matrix-bot": {}
+    "auto-invite-matrix-bot": {},
+    "https://github.com/ananace/matrix-synapse": {
+        "section": "synapse-deployment"
+    }
 }
