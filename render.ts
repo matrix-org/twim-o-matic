@@ -245,8 +245,22 @@ function appendEvent(rootEventId, newEvent, section) {
     output[section][rootEventId] += `> ${newEvent.content.body}  \n`;
 }
 
+function generateHeader() {
+    if (debug) return "";
+
+    return `---
+date: '${ds()}'
+title: 'This Week in Matrix ${ds()}'
+categories:
+  - This Week in Matrix
+author: Ben Parsons
+image: TODO
+---\n\n`;
+}
+
 function outputAll() {
     var result:string = "";
+    result += generateHeader();
     result += `## Matrix Live 🎙\n\n`;
     result += generateSection(sections.todo);
     result += generateSection(sections.status);
