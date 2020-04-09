@@ -74,5 +74,8 @@
     "@uhoreg:matrix.org": {"name": "uhoreg"},
     "@valere35:matrix.org": {"name": "valere"},
     "@wilko:pattle.im": {"name": "Wilko"},
+    "@s7evink:s3cr3t.me": {"name": "s7evink"},
+    "@poljar:matrix.org": {"name": "poljar"},
+    "@vurpo:hacklab.fi": {"name": "vurpo"},
     "@zoe:zoisite.xyz": {"name": "zoe"}
 }

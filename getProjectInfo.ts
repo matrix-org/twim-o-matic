@@ -13,6 +13,8 @@ export default function (body: string) {
     if (body.includes("ruma-events")) sections["sdks"]++;
     if (body.includes("ruma-api")) sections["sdks"]++;
     if (body.includes("ruma-client-api")) sections["sdks"]++;
+    if (body.includes("libquotient")) sections["sdks"]++;
+    if (body.includes("libqmatrixclient")) sections["sdks"]++;
     if (body.includes("library")) sections["sdks"]++;
     if (body.includes("php library")) sections["sdks"]++;
     if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
@@ -29,6 +31,7 @@ export default function (body: string) {
     if (body.includes("synapse")) sections["servers"]++;
     if (body.includes("dendrite")) sections["servers"]++;
     if (body.includes("gomatrixserverlib")) sections["servers"]++;
+    if (body.includes("matrixserver")) sections["servers"]++;
     if (body.includes("notepad")) sections["projects"]++;
     if (body.includes("fluffy")) sections["clients"]++;
     if (body.includes("bot")) sections["bots"]++;
@@ -58,6 +61,9 @@ export default function (body: string) {
     if (body.includes("mautrix-whatsapp")) sections["bridges"]++;
     if (body.includes("plumb")) sections["bridges"]++;
     if (body.includes("mx-puppet")) sections["bridges"]++;
+    if (body.includes("send webhooks")) sections["bridges"]++;
+    if (body.includes("messages to matrix")) sections["bridges"]++;
+    if (body.includes("kallithea")) sections["bridges"]++;
     if (body.includes("weekly spec update")) sections["spec"]++;
     if (body.includes("msc")) sections["spec"]++;
     if (body.includes("incubator")) sections["hackathons"]++;
