@@ -52,13 +52,25 @@ var output = {};
 var pings = "";
 var prevSection = "";
 var prevSender = "";
+var prevEventId = "";
 
 async function getEvent(eventId) {
     var event = await client.getEvent(twimRoomId, eventId);
     return event;
 }
 
-function handleEvent(event, title) {
+function handleAddition(event) {
+    var oldEvent = output[prevSection]
+        .find(e => {return e.event_id === prevEventId});
+    oldEvent.content += `\nTODO ${event.sender}: ${event.content.body}${debug ? event.event_id : "" }\n`;
+}
+
+function handleEvent(event, title, mode) {
+    if (mode === "✍️") {
+        handleAddition(event);
+        return;
+    }
+
     var written = false;
 
     // first extract the body content
@@ -159,6 +171,8 @@ function handleEvent(event, title) {
     body = body.trim();
 
     if (["m.video", "m.image"].includes(event.content.msgtype)) {
+        if (debug) return;
+
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
         var filename = body.replace('> ', '').replace(/ /g, "");
@@ -172,6 +186,7 @@ function handleEvent(event, title) {
     } else {
         prevSection = section;
         prevSender = event.sender;
+        prevEventId = event.event_id;
     }
 
     if (written) return;
@@ -180,7 +195,7 @@ function handleEvent(event, title) {
 
     var debugText = "";
     if (debug) {
-        debugText = JSON.stringify(projectInfo) + `\n\n`;
+        debugText = event.event_id + `\n` + JSON.stringify(projectInfo) + `\n\n`;
     }
 
     var projectLine:string = "";
@@ -195,7 +210,8 @@ function handleEvent(event, title) {
 
     output[section].push({
         score: score,
-        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n`
+        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n`,
+        event_id: event.event_id
     });
 }
 
@@ -287,8 +303,10 @@ async function main() {
     })
     for(var line of eventsToHandle) {
         if (line.length === 0) continue;
+
+        line = line.split(",");
         try {
-            handleEvent(await getEvent(line), "TODO")
+            handleEvent(await getEvent(line[0]), "TODO", line[1])
         } catch (ex) {
             console.log(ex.body);
             console.log(line);
