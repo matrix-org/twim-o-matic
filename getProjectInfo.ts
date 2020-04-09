@@ -30,6 +30,8 @@ export default function (body: string) {
     if (body.includes("docker")) sections["ops"]++;
     if (body.includes("synapse")) sections["servers"]++;
     if (body.includes("dendrite")) sections["servers"]++;
+    if (body.includes("conduit")) sections["servers"]++;
+    if (body.includes("federation")) sections["servers"]++;
     if (body.includes("gomatrixserverlib")) sections["servers"]++;
     if (body.includes("matrixserver")) sections["servers"]++;
     if (body.includes("notepad")) sections["projects"]++;
