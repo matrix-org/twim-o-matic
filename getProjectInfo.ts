@@ -84,6 +84,9 @@ export default function (body: string) {
         if (body.includes(key)) {
             project = key;
         }
+        if (projects[key].section) {
+            section = projects[key].section;
+        }
     });
 
     Object.keys(sections).forEach(key => {
