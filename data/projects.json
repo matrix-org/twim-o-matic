@@ -20,5 +20,9 @@
     "auto-invite-matrix-bot": {},
     "https://github.com/ananace/matrix-synapse": {
         "section": "synapse-deployment"
+    },
+    "https://github.com/ruma/": {
+        "section": "sdks",
+        "summary": "Ruma is a Rust project to create a comprehensive set of APIs for Matrix. Previously there was a Ruma homeserver project."
     }
 }
