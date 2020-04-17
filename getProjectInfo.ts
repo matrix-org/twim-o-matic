@@ -70,6 +70,7 @@ export default function (body: string) {
     if (body.includes("msc")) sections["spec"]++;
     if (body.includes("incubator")) sections["hackathons"]++;
     if (body.includes("hackathon")) sections["hackathons"]++;
+    if (body.includes("guide")) sections["guides"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {

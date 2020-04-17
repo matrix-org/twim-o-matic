@@ -278,6 +278,7 @@ function outputAll() {
     result += generateSection(sections.eventvideos);
     result += generateSection(sections.talks);
     result += generateSection(sections.projects);
+    result += generateSection(sections.guides);
     result += generateSection(sections.hackathons);
     result += generateSection(sections.jobs);
     result += generateSection(sections.news);
