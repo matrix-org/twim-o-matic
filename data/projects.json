@@ -12,11 +12,12 @@
     "mx-puppet-voipms" : {
         "summary": "[mx-puppet-voipms](https://github.com/zoenb/mx-puppet-voipms) is a puppeting bridge for the SMS functionallity provided by [voip.ms](https://voip.ms). It is based on [mx-puppet-bridge](https://github.com/Sorunome/mx-puppet-bridge)."
     },
-    "nheko": {
-        "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at"
+    "https://github.com/nheko-reborn/nheko": {
+        "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at",
+        "title": "Nheko"
     },
-    "FluffyChat": {},
-    "Quotient": {},
+    "fluffychat": {},
+    "quotient": {},
     "auto-invite-matrix-bot": {},
     "https://github.com/ananace/matrix-synapse": {
         "section": "synapse-deployment"
@@ -24,5 +25,17 @@
     "https://github.com/ruma/": {
         "section": "sdks",
         "summary": "Ruma is a Rust project to create a comprehensive set of APIs for Matrix. Previously there was a Ruma homeserver project."
+    },
+    "dendrite": {
+        "summary": "Dendrite is a next-generation homeserver written in Go"
+    },
+    "https://git.koesters.xyz/timo/conduit": {
+        "summary": "A Matrix homeserver written in Rust https://conduit.rs"
+    },
+    "https://github.com/devinr528/rumatui": {
+        "summary": "WIP Command line Matrix client using matrix-rust-sdk"
+    },
+    "#test:zemos.net": {
+        "summary": "Construct is a performance-focused homeserver written in C++"
     }
 }
