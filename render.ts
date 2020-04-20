@@ -199,10 +199,8 @@ function handleEvent(event, title, mode) {
     }
 
     var projectLine:string = "";
-    if (projectInfo.project && 
-        projects[projectInfo.project] &&
-        projects[projectInfo.project].summary) {
-            projectLine = projects[projectInfo.project].summary + `\n\n`;
+    if (projectInfo.summary) {
+            projectLine = projectInfo.summary + `\n\n`;
         }
     else if (debug) {
         projectLine = `TODO MISSING SUMMARY LINE\n\n`;

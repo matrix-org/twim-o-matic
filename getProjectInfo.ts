@@ -1,5 +1,5 @@
 export default function (body: string) {
-    var project: string, section: string, maxScore: Number;
+    var project: string, section: string, maxScore: Number, summary: string;
     maxScore = 0;
 
     const sections = {};
@@ -37,8 +37,12 @@ export default function (body: string) {
     if (body.includes("notepad")) sections["projects"]++;
     if (body.includes("fluffy")) sections["clients"]++;
     if (body.includes("bot")) sections["bots"]++;
+    if (body.includes("covbot")) sections["bots"]++;
     if (body.includes("gsoc")) sections["status"]++;
     if (body.includes("homeserver")) sections["servers"]++;
+    if (body.includes("worker")) sections["servers"]++;
+    if (body.includes("replication")) sections["servers"]++;
+    if (body.includes("construct")) sections["servers"]++;
     if (body.includes("sygnal")) sections["servers"]++;
     if (body.includes("rooms")) sections["rooms"]++;
     if (body.includes("transcript")) sections["news"]++;
@@ -71,6 +75,13 @@ export default function (body: string) {
     if (body.includes("incubator")) sections["hackathons"]++;
     if (body.includes("hackathon")) sections["hackathons"]++;
     if (body.includes("guide")) sections["guides"]++;
+    if (body.includes("tutorial")) sections["guides"]++;
+    if (body.includes("wrote")) sections["guides"]++;
+    if (body.includes("setting up")) sections["guides"]++;
+    if (body.includes("run-through")) sections["guides"]++;
+    if (body.includes("watchalongs")) sections["projects"]++;
+    if (body.includes("tweeting along")) sections["projects"]++;
+    if (body.includes("doctor-who-watchalong:abolivier.bzh")) sections["projects"]++;
     
     Object.keys(sections).forEach(key => {
         if (sections[key] > maxScore) {
@@ -82,9 +93,12 @@ export default function (body: string) {
     var projects = require("./data/projects.json")
     Object.keys(projects).forEach(key => {
         if (body.includes(key)) {
-            project = key;
+            project = projects[key].title ? projects[key].title : key;
             if (projects[key].section) {
                 section = projects[key].section;
+            }
+            if (projects[key].summary) {
+                summary = projects[key].summary;
             }
         }
     });
@@ -98,6 +112,7 @@ export default function (body: string) {
     return {
         project: project,
         section: section,
-        scores: sections
+        scores: sections,
+        summary: summary
     }
 }
