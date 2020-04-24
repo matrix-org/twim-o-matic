@@ -17,6 +17,8 @@ export default function (body: string) {
     if (body.includes("libqmatrixclient")) sections["sdks"]++;
     if (body.includes("library")) sections["sdks"]++;
     if (body.includes("php library")) sections["sdks"]++;
+    if (body.includes("client-sdk")) sections["sdks"]++;
+    if (body.includes("matrix-spring-boot-sdk")) sections["sdks"]++;
     if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
     if (body.includes("multi arch synapse docker image")) sections["synapse-deployment"]++;
     if (body.includes("synapse docker")) sections["synapse-deployment"]++;
@@ -49,6 +51,7 @@ export default function (body: string) {
     if (body.includes("client")) sections["clients"]++;
     if (body.includes("scrolling")) sections["clients"]++;
     if (body.includes("kubernetes")) sections["ops"]++;
+    if (body.includes("matrix-docker-ansible-deploy")) sections["ops"]++;
     if (body.includes("nheko")) sections["clients"]++;
     if (body.includes("thumbnail")) sections["clients"]++;
     if (body.includes("appimage")) sections["clients"]++;
@@ -61,6 +64,7 @@ export default function (body: string) {
     if (body.includes("meetup")) sections["talks"]++;
     if (body.includes("open tech will save us")) sections["status"]++;
     if (body.includes("open-tech-meetup")) sections["status"]++;
+    if (body.includes("french government")) sections["status"]++;
     if (body.includes("mautrix-telegram")) sections["bridges"]++;
     if (body.includes("bridge")) sections["bridges"]++;
     if (body.includes("bridging")) sections["bridges"]++;

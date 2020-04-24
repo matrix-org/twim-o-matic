@@ -12,6 +12,12 @@ import ping from "./ping";
 import getSection from "./getSection";
 import getProjectInfo from "./getProjectInfo";
 const axios = require('axios').default;
+const { program } = require('commander');
+program
+  .option('-d, --debug', 'output all the json blocks')
+  .option('-m, --media', 'download and process media')
+  .option('-p, --pings', 'get ping-room data');
+program.parse(process.argv);
 
 const homeserverUrl = require("./config/access_token.json").homeserver;
 const accessToken = require("./config/access_token.json").accessToken;
@@ -22,7 +28,6 @@ const projects = require("./data/projects.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
-const debug = false;
 
 //client.start().then(() => console.log("Client started!"));
 
@@ -62,7 +67,7 @@ async function getEvent(eventId) {
 function handleAddition(event) {
     var oldEvent = output[prevSection]
         .find(e => {return e.event_id === prevEventId});
-    oldEvent.content += `\nTODO ${event.sender}: ${event.content.body}${debug ? event.event_id : "" }\n`;
+    oldEvent.content += `\nTODO ${event.sender}: ${event.content.body}${program.debug ? event.event_id : "" }\n`;
 }
 
 function handleEvent(event, title, mode) {
@@ -105,7 +110,7 @@ function handleEvent(event, title, mode) {
     var titleLine:string = "";
     if (body[0] === '#') {
         const bodyLines = body.split('\n');
-        titleLine = `###${bodyLines[0].replace(/\#/g, "")}\n\n`
+        titleLine = `### ${bodyLines[0].replace(/\#/g, "").trim()}\n\n`
         bodyLines.shift();
         body = bodyLines.join('\n');
         body = body.trim();
@@ -171,7 +176,7 @@ function handleEvent(event, title, mode) {
     body = body.trim();
 
     if (["m.video", "m.image"].includes(event.content.msgtype)) {
-        if (debug) return;
+        if (program.debug || ! program.media) return;
 
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
@@ -194,7 +199,7 @@ function handleEvent(event, title, mode) {
     if (!output[section]) output[section] = [];
 
     var debugText = "";
-    if (debug) {
+    if (program.debug) {
         debugText = event.event_id + `\n` + JSON.stringify(projectInfo) + `\n\n`;
     }
 
@@ -202,8 +207,10 @@ function handleEvent(event, title, mode) {
     if (projectInfo.summary) {
             projectLine = projectInfo.summary + `\n\n`;
         }
-    else if (debug) {
-        projectLine = `TODO MISSING SUMMARY LINE\n\n`;
+    else if (program.debug) {
+        if (! ["status", "synapse-deployment", "projects"].includes(projectInfo.section)) {
+            projectLine = `TODO MISSING SUMMARY LINE\n\n`;
+        }
     }
 
     output[section].push({
@@ -244,7 +251,7 @@ function appendEvent(rootEventId, newEvent, section) {
 }
 
 function generateHeader() {
-    if (debug) return "";
+    if (program.debug) return "";
 
     return `---
 date: '${ds()}'
@@ -325,7 +332,10 @@ async function main() {
             console.log(line);
         }
     }
-    pings = await ping();
+    if (program.pings) {
+        pings = await ping();
+    }
+    
     //handleEvent(await getEvent("$15655651651446947hOnwk:matrix.org"), "This Week in Rust", sections.servers);
     //manualAddEvent("Bluepill (Sailfish client) status update", `Users can now download [artifacts from my gitlab account](https://gitlab.com/cy8aer/bluepill/pipelines) since I got an SDK container from CoDerus running, cross compiling to Sailfish-RPMs in the Gitlab-Ci.\nBut my programming progress on \`master\` looks a bit silent because I swap to [https://github.com/poljar/matrix-nio](vector://vector/webapp/matrix-nio).`, sections.clients);
     //appendEvent("$15657737670VyoXM:kittenface.studio", await getEvent("$15657745573qgJxE:kittenface.studio"), sections.ops)

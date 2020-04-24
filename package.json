@@ -5,6 +5,7 @@
   "main": "watch.js",
   "dependencies": {
     "axios": "^0.19.2",
+    "commander": "^5.0.0",
     "matrix-bot-sdk": "^0.3.9",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
