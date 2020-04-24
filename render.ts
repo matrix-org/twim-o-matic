@@ -176,7 +176,7 @@ function handleEvent(event, title, mode) {
     body = body.trim();
 
     if (["m.video", "m.image"].includes(event.content.msgtype)) {
-        if (program.debug || ! program.media) return;
+        if (! program.media) return;
 
         titleLine = "### TODO GET IMAGE\n\n";
         var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
