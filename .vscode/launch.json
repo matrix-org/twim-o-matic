@@ -21,6 +21,16 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug render",
+            "program": "${workspaceFolder}/render.js",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ],
+            "args": ["-d"]
         }
     ]
 }
