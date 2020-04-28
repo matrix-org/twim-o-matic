@@ -58,6 +58,6 @@
         "section": "servers"
     },
     "conduit": {
-        "summary": "Conduit is a Matrix homeserver written in Rust <https://conduit.rs>"
+        "summary": "Conduit is a Matrix homeserver written in Rust https://conduit.rs"
     }
 }
