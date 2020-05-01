@@ -34,11 +34,15 @@ client.on("room.event", async function(roomId, event) {
     if (! event.content || ! event.content['m.relates_to']) {
         return;
     }
-    if (event.content['m.relates_to'].key !== "👀") {
+    if (!["✍︎", "👀"].includes(event.content['m.relates_to'].key)) {
         return;
     }
-    console.log("++++\n+++++\n++++++");
+    console.log(
+        "++++++\n" + 
+        `++++++ event from ${event.sender}\n` +
+        "++++++");
     var event_id = event.content['m.relates_to'].event_id;
+    var key = event.content['m.relates_to'].key;
     
-    appendFileSync(`events/events-${watchDate}.txt`, `${event_id}\n`);
+    appendFileSync(`events/events-${watchDate}.txt`, `${event_id},${key}\n`);
 });
