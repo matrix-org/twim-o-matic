@@ -39,7 +39,7 @@ client.on("room.event", async function(roomId, event) {
     }
     console.log(
         "++++++\n" + 
-        `++++++ event from ${event.sender}\n` +
+        `++++++ event: ${event.content['m.relates_to'].event_id}\n` +
         "++++++");
     var event_id = event.content['m.relates_to'].event_id;
     var key = event.content['m.relates_to'].key;
