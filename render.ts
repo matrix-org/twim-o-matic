@@ -162,7 +162,7 @@ function handleEvent(event, title, mode) {
     body = body.replace(/(^> [^\*](.)+\n)> \*/mg, `$1>\n> *`);
 
     // add warning to malformed header
-    body = body.replace(/(^> )(#) (.*)/mg, `$1###$2 $3`);
+    body = body.replace(/(^> )(#+) (.*)/mg, `$1#### $3`);
 
     // insert missing gapped `>` after quoted headers
     body = body.replace(/(^> #*.*)\n>[^\n]/gm, `$1\n>\n> `);
