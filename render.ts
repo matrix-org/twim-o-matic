@@ -71,7 +71,7 @@ function handleAddition(event) {
 }
 
 function handleEvent(event, title, mode) {
-    if (mode === "✍️") {
+    if (mode === "✍︎") {
         handleAddition(event);
         return;
     }
