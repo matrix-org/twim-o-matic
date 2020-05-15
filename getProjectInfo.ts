@@ -16,6 +16,7 @@ export default function (body: string) {
         })
     });
 
+    if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
     
     if (body.includes("simplematrixlib")) sections["sdks"]++;
     if (body.includes("py-matrix-utils")) sections["sdks"]++;
@@ -31,7 +32,6 @@ export default function (body: string) {
     if (body.includes("matrix-spring-boot-sdk")) sections["sdks"]++;
 
 
-    if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
     if (body.includes("multi arch synapse docker image")) sections["synapse-deployment"]++;
     if (body.includes("synapse docker")) sections["synapse-deployment"]++;
     if (body.includes("image for synapse")) sections["synapse-deployment"]++;
@@ -65,15 +65,6 @@ export default function (body: string) {
     if (body.includes("open tech will save us")) sections["status"]++;
     if (body.includes("open-tech-meetup")) sections["status"]++;
     if (body.includes("french government")) sections["status"]++;
-    if (body.includes("mautrix-telegram")) sections["bridges"]++;
-    if (body.includes("bridge")) sections["bridges"]++;
-    if (body.includes("bridging")) sections["bridges"]++;
-    if (body.includes("mautrix-whatsapp")) sections["bridges"]++;
-    if (body.includes("plumb")) sections["bridges"]++;
-    if (body.includes("mx-puppet")) sections["bridges"]++;
-    if (body.includes("send webhooks")) sections["bridges"]++;
-    if (body.includes("messages to matrix")) sections["bridges"]++;
-    if (body.includes("kallithea")) sections["bridges"]++;
     if (body.includes("weekly spec update")) sections["spec"]++;
     if (body.includes("msc")) sections["spec"]++;
     if (body.includes("incubator")) sections["hackathons"]++;

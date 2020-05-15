@@ -3,12 +3,26 @@
     "status": {"title": "Dept of *Status of Matrix* 🌡"},
     "servers": {"title": "Dept of Servers 🏢"},
     "synapse-deployment": {"title": "Synapse Deployment 📥"},
-    "bridges": {"title": "Dept of Bridges 🌉"},
+    "bridges": {
+        "title": "Dept of Bridges 🌉",
+        "hints": [
+            "mautrix-telegram",
+            "bridge",
+            "bridging",
+            "mautrix-whatsapp",
+            "plumb",
+            "mx-puppet",
+            "send webhooks",
+            "messages to matrix",
+            "kallithea"
+        ]
+    },
     "services": {"title": "Dept of Services 🚀"},
     "ops": {"title": "Dept of Ops 🛠"},
     "clients": {
         "title": "Dept of Clients 📱",
-        "hints": ["fluffy",
+        "hints": [
+            "fluffy",
             "client",
             "scrolling",
             "nheko",
@@ -21,7 +35,9 @@
             "riot",
             "riotx",
             "markdown",
-            "context menu"]
+            "context menu",
+            "sso"
+        ]
     },
     "bots": {"title": "Dept of Bots 🤖"},
     "thoughts": {"title": "Final Thoughts 💭"},
@@ -36,7 +52,12 @@
     "news": {"title": "Matrix in the News 📰"},
     "build": {"title": "Dept of *Built on Matrix* 🏗"},
     "jobs": {"title": "Dept of Jobs 💰"},
-    "rooms": {"title": "New Public Rooms 🏟"},
+    "rooms": {
+        "title": "New Public Rooms 🏟",
+        "hints": [
+            "created a room"
+        ]
+    },
     "hackathons": {"title": "Dept of Hackathons 🍕"},
     "guides": {"title": "Dept of Guides 🧭"}
 }
