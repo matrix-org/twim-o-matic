@@ -42,7 +42,26 @@
     "bots": {"title": "Dept of Bots 🤖"},
     "thoughts": {"title": "Final Thoughts 💭"},
     "eventvideos": {"title": "Dept of Event Videos 📹"},
-    "sdks": {"title": "Dept of SDKs and Frameworks 🧰"},
+    "sdks": {
+        "title": "Dept of SDKs and Frameworks 🧰",
+        "hints": [
+            "simplematrixlib",
+            "py-matrix-utils",
+            "matrix-rust-sdk",
+            "ruma-events",
+            "ruma-api",
+            "ruma-client-api",
+            "libquotient",
+            "libqmatrixclient",
+            "library",
+            "php library",
+            "client-sdk",
+            "matrix-spring-boot-sdk",
+            "sdk",
+            "matrix-dart-sdk",
+            "matrix_sdk"
+        ]
+    },
     "encryption": {"title": "Dept of Encryption 🔐"},
     "blockchain": {"title": "Dept of Blockchain 🤷‍"},
     "spec": {"title": "Dept of Spec 📜"},

@@ -17,20 +17,6 @@ export default function (body: string) {
     });
 
     if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
-    
-    if (body.includes("simplematrixlib")) sections["sdks"]++;
-    if (body.includes("py-matrix-utils")) sections["sdks"]++;
-    if (body.includes("matrix-rust-sdk")) sections["sdks"]++;
-    if (body.includes("ruma-events")) sections["sdks"]++;
-    if (body.includes("ruma-api")) sections["sdks"]++;
-    if (body.includes("ruma-client-api")) sections["sdks"]++;
-    if (body.includes("libquotient")) sections["sdks"]++;
-    if (body.includes("libqmatrixclient")) sections["sdks"]++;
-    if (body.includes("library")) sections["sdks"]++;
-    if (body.includes("php library")) sections["sdks"]++;
-    if (body.includes("client-sdk")) sections["sdks"]++;
-    if (body.includes("matrix-spring-boot-sdk")) sections["sdks"]++;
-
 
     if (body.includes("multi arch synapse docker image")) sections["synapse-deployment"]++;
     if (body.includes("synapse docker")) sections["synapse-deployment"]++;

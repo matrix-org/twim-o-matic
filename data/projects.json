@@ -66,7 +66,7 @@
         "summary": "[Polyjuice Client](https://hex.pm/packages/polyjuice_client) is a Matrix library for Elixir",
         "section": "sdks"
     },
-    "https://git.pattle.im/pattle": {
+    "https://git.pattle.im/pattle/app": {
         "title": "Pattle",
         "summary": "Pattle is a client written for Flutter using Dart",
         "section": "clients"
