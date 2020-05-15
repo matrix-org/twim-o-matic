@@ -88,5 +88,9 @@
     "@wilko:pattle.im": {"name": "Wilko"},
     "@witchent:matrix.org": {"name": "witchent"},
     "@robin:icewind.nl": {"name": "Icewind"},
+    "@rdi:matrix.alkemata.com": {"name": "rdi"},
+    "@lub:imninja.net": {"name": "lub"},
+    "@tsearle:hackerspaces.be": {"name": "Torrey Searle"},
+    "@ludwig:disko.media": {"name": "Ludwig"},
     "@zoe:zoisite.xyz": {"name": "zoe"}
 }
