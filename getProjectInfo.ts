@@ -1,12 +1,19 @@
 export default function (body: string) {
     var project: string, section: string, maxScore: Number, summary: string;
     maxScore = 0;
+    var hintsFound = [];
 
     const sectionsData = require("./data/sections.json");
     const sections = {};
     Object.keys(sectionsData).forEach((key) => {
         sections[key] = 0;
-    //     sectionsData[key].
+        if (!sectionsData[key].hints) return;
+        sectionsData[key].hints.forEach(hint => {
+            if (body.includes(hint)) {
+                sections[key]++;
+                hintsFound.push(hint);
+            }
+        })
     });
 
     
@@ -42,7 +49,6 @@ export default function (body: string) {
     if (body.includes("gomatrixserverlib")) sections["servers"]++;
     if (body.includes("matrixserver")) sections["servers"]++;
     if (body.includes("notepad")) sections["projects"]++;
-    if (body.includes("fluffy")) sections["clients"]++;
     if (body.includes("bot")) sections["bots"]++;
     if (body.includes("covbot")) sections["bots"]++;
     if (body.includes("gsoc")) sections["status"]++;
@@ -53,21 +59,8 @@ export default function (body: string) {
     if (body.includes("sygnal")) sections["servers"]++;
     if (body.includes("rooms")) sections["rooms"]++;
     if (body.includes("transcript")) sections["news"]++;
-    if (body.includes("client")) sections["clients"]++;
-    if (body.includes("scrolling")) sections["clients"]++;
     if (body.includes("kubernetes")) sections["ops"]++;
     if (body.includes("matrix-docker-ansible-deploy")) sections["ops"]++;
-    if (body.includes("nheko")) sections["clients"]++;
-    if (body.includes("thumbnail")) sections["clients"]++;
-    if (body.includes("appimage")) sections["clients"]++;
-    if (body.includes("flatpack")) sections["clients"]++;
-    if (body.includes("gomuks")) sections["clients"]++;
-    if (body.includes("ios")) sections["clients"]++;
-    if (body.includes("riot web")) sections["clients"]++;
-    if (body.includes("riot")) sections["clients"]++;
-    if (body.includes("riotx")) sections["clients"]++;
-    if (body.includes("markdown")) sections["clients"]++;
-    if (body.includes("context menu")) sections["clients"]++;
     if (body.includes("meetup")) sections["talks"]++;
     if (body.includes("open tech will save us")) sections["status"]++;
     if (body.includes("open-tech-meetup")) sections["status"]++;
@@ -124,6 +117,7 @@ export default function (body: string) {
         project: project,
         section: section,
         scores: sections,
-        summary: summary
+        summary: summary,
+        hintsFound: hintsFound
     }
 }
