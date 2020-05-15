@@ -15,7 +15,7 @@
     "mx-puppet-voipms" : {
         "summary": "[mx-puppet-voipms](https://github.com/zoenb/mx-puppet-voipms) is a puppeting bridge for the SMS functionallity provided by [voip.ms](https://voip.ms). It is based on [mx-puppet-bridge](https://github.com/Sorunome/mx-puppet-bridge)."
     },
-    "https://github.com/nheko-reborn/nheko": {
+    "nheko": {
         "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at",
         "title": "Nheko"
     },
@@ -42,7 +42,8 @@
         "summary": "Construct is a performance-focused homeserver written in C++"
     },
     "gomuks": {
-        "summary": "[gomuks](https://maunium.net/go/gomuks) is a terminal based Matrix client written in Go. [Source on GitHub](https://github.com/tulir/gomuks)"
+        "summary": "[gomuks](https://maunium.net/go/gomuks) is a terminal based Matrix client written in Go. [Source on GitHub](https://github.com/tulir/gomuks)",
+        "section": "clients"
     },
     "https://github.com/spantaleev/matrix-docker-ansible-deploy": {
         "title": "matrix-docker-ansible-deploy",
@@ -59,5 +60,20 @@
     },
     "conduit": {
         "summary": "Conduit is a Matrix homeserver written in Rust https://conduit.rs"
+    },
+    "https://hex.pm/packages/polyjuice_client": {
+        "title": "Polyjuice Client",
+        "summary": "[Polyjuice Client](https://hex.pm/packages/polyjuice_client) is a Matrix library for Elixir",
+        "section": "sdks"
+    },
+    "https://git.pattle.im/pattle": {
+        "title": "Pattle",
+        "summary": "Pattle is a client written for Flutter using Dart",
+        "section": "clients"
+    },
+    "https://nio.chat": {
+        "title": "Nio",
+        "summary": "[Nio](https://nio.chat) is a client written with SwiftUI",
+        "section": "clients"
     }
 }

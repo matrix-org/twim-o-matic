@@ -61,6 +61,8 @@ export default function (body: string) {
     if (body.includes("riot web")) sections["clients"]++;
     if (body.includes("riot")) sections["clients"]++;
     if (body.includes("riotx")) sections["clients"]++;
+    if (body.includes("markdown")) sections["clients"]++;
+    if (body.includes("context menu")) sections["clients"]++;
     if (body.includes("meetup")) sections["talks"]++;
     if (body.includes("open tech will save us")) sections["status"]++;
     if (body.includes("open-tech-meetup")) sections["status"]++;
