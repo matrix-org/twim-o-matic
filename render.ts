@@ -14,7 +14,8 @@ import getProjectInfo from "./getProjectInfo";
 const axios = require('axios').default;
 const { program } = require('commander');
 program
-  .option('-d, --debug', 'output all the json blocks')
+  .option('-d, --debug', 'output all the json blocks, suppress header')
+  .option('-s, --summary', 'highlight missing summary blocks')
   .option('-m, --media', 'download and process media')
   .option('-p, --pings', 'get ping-room data');
 program.parse(process.argv);
@@ -210,7 +211,7 @@ function handleEvent(event, title, mode, sectionOverride) {
     if (projectInfo.summary) {
             projectLine = projectInfo.summary + `\n\n`;
         }
-    else if (program.debug) {
+    else if (program.summary) {
         if (! ["status", "synapse-deployment", "projects"].includes(projectInfo.section)) {
             projectLine = `TODO MISSING SUMMARY LINE\n\n`;
         }
