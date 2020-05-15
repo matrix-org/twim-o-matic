@@ -70,7 +70,7 @@ function handleAddition(event) {
     oldEvent.content += `\nTODO ${event.sender}: ${event.content.body}${program.debug ? event.event_id : "" }\n`;
 }
 
-function handleEvent(event, title, mode) {
+function handleEvent(event, title, mode, sectionOverride) {
     if (mode === "✍︎") {
         handleAddition(event);
         return;
@@ -100,6 +100,9 @@ function handleEvent(event, title, mode) {
         //section = getSection(bodyLower, section);
     }
     section = sections[section].title;
+    if (sectionOverride) {
+        section = sections[sectionOverride].title;
+    }
     
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -326,7 +329,7 @@ async function main() {
 
         line = line.split(",");
         try {
-            handleEvent(await getEvent(line[0]), "TODO", line[1])
+            handleEvent(await getEvent(line[0]), "TODO", line[1], line[2])
         } catch (ex) {
             console.log(ex.body);
             console.log(line);
