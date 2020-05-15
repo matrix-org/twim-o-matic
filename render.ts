@@ -99,7 +99,7 @@ function handleEvent(event, title, mode) {
     } else {
         //section = getSection(bodyLower, section);
     }
-    section = sections[section];
+    section = sections[section].title;
     
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -302,12 +302,12 @@ function outputAll() {
 }
 
 function generateSection(section) {
-    if (! output[section]) return "";
+    if (! output[section.title]) return "";
 
     var result:string = "";
-    result += `## ${section}\n\n`;
-    output[section].sort(( a, b ) => a.score > b.score ? -1 : 1 );
-    output[section].forEach(part => {
+    result += `## ${section.title}\n\n`;
+    output[section.title].sort(( a, b ) => a.score > b.score ? -1 : 1 );
+    output[section.title].forEach(part => {
         result += `${part.content}\n`;
     });
     return result;

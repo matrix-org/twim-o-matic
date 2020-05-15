@@ -2,11 +2,14 @@ export default function (body: string) {
     var project: string, section: string, maxScore: Number, summary: string;
     maxScore = 0;
 
+    const sectionsData = require("./data/sections.json");
     const sections = {};
-    Object.keys(require("./data/sections.json")).forEach((key) => {
+    Object.keys(sectionsData).forEach((key) => {
         sections[key] = 0;
+    //     sectionsData[key].
     });
 
+    
     if (body.includes("simplematrixlib")) sections["sdks"]++;
     if (body.includes("py-matrix-utils")) sections["sdks"]++;
     if (body.includes("matrix-rust-sdk")) sections["sdks"]++;
@@ -19,6 +22,8 @@ export default function (body: string) {
     if (body.includes("php library")) sections["sdks"]++;
     if (body.includes("client-sdk")) sections["sdks"]++;
     if (body.includes("matrix-spring-boot-sdk")) sections["sdks"]++;
+
+
     if (/from.*to.*matrix/.exec(body)) sections["bridges"]++;
     if (body.includes("multi arch synapse docker image")) sections["synapse-deployment"]++;
     if (body.includes("synapse docker")) sections["synapse-deployment"]++;
