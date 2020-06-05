@@ -14,11 +14,17 @@
             "mx-puppet",
             "send webhooks",
             "messages to matrix",
-            "kallithea"
+            "kallithea",
+            "mautrix-facebook"
         ]
     },
     "services": {"title": "Dept of Services 🚀"},
-    "ops": {"title": "Dept of Ops 🛠"},
+    "ops": {
+        "title": "Dept of Ops 🛠",
+        "hints": [
+            "cli_federation-tester_de"
+        ]
+    },
     "clients": {
         "title": "Dept of Clients 📱",
         "hints": [
