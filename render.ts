@@ -119,7 +119,7 @@ function handleEvent(event, title, mode, sectionOverride) {
         body = bodyLines.join('\n');
         body = body.trim();
     }
-    else if (section === sections.thoughts) {
+    else if ([sections.thoughts.title, sections.spec.title].includes(section)) {
         titleLine = "";
     }
     else if (projectInfo.project) {

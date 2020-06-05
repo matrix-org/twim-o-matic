@@ -33,6 +33,7 @@
         "summary": "Dendrite is a next-generation homeserver written in Go"
     },
     "https://git.koesters.xyz/timo/conduit": {
+        "section": "servers",
         "summary": "A Matrix homeserver written in Rust https://conduit.rs"
     },
     "https://github.com/devinr528/rumatui": {
@@ -59,6 +60,7 @@
         "section": "servers"
     },
     "conduit": {
+        "section": "servers",
         "summary": "Conduit is a Matrix homeserver written in Rust https://conduit.rs"
     },
     "https://hex.pm/packages/polyjuice_client": {
