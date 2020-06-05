@@ -160,7 +160,7 @@ function handleEvent(event, title, mode, sectionOverride) {
     }
 
     // * for lists, not -, get over it
-    body = body.replace(/^>( )+-/gm, "> *");
+    body = body.replace(/^>(( )+)-/gm, ">$1*");
 
     // fix some missing linebreaks
     body = body.replace(/(^> [^\*](.)+\n)> \*/mg, `$1>\n> *`);
