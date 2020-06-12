@@ -25,8 +25,6 @@ export default function (body: string) {
     if (body.includes("matrix-synapse")) sections["synapse-deployment"]++;
     if (body.includes("mvgorcum/docker-matrix")) sections["synapse-deployment"]++;
     if (body.includes("docker-matrix")) sections["synapse-deployment"]++;
-    if (body.includes("helm chart")) sections["ops"]++;
-    if (body.includes("dacruz21/matrix-chart")) sections["ops"]++;
     if (body.includes("docker")) sections["ops"]++;
     if (body.includes("synapse")) sections["servers"]++;
     if (body.includes("dendrite")) sections["servers"]++;
@@ -37,7 +35,6 @@ export default function (body: string) {
     if (body.includes("notepad")) sections["projects"]++;
     if (body.includes("bot")) sections["bots"]++;
     if (body.includes("covbot")) sections["bots"]++;
-    if (body.includes("gsoc")) sections["status"]++;
     if (body.includes("homeserver")) sections["servers"]++;
     if (body.includes("worker")) sections["servers"]++;
     if (body.includes("replication")) sections["servers"]++;
@@ -51,7 +48,6 @@ export default function (body: string) {
     if (body.includes("open tech will save us")) sections["status"]++;
     if (body.includes("open-tech-meetup")) sections["status"]++;
     if (body.includes("french government")) sections["status"]++;
-    if (body.includes("weekly spec update")) sections["spec"]++;
     if (body.includes("msc")) sections["spec"]++;
     if (body.includes("incubator")) sections["hackathons"]++;
     if (body.includes("hackathon")) sections["hackathons"]++;

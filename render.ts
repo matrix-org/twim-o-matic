@@ -274,6 +274,7 @@ function outputAll() {
     result += generateSection(sections.todo);
     result += generateSection(sections.status);
     result += generateSection(sections.spec);
+    result += generateSection(sections.gsoc);
     result += generateSection(sections.servers);
     result += generateSection(sections["synapse-deployment"]);
     result += generateSection(sections.bridges);
@@ -283,6 +284,7 @@ function outputAll() {
     result += generateSection(sections.ops);
     result += generateSection(sections.services);
     result += generateSection(sections.blockchain);
+    result += generateSection(sections.iot);
     result += generateSection(sections.bots);
     result += generateSection(sections.eventvideos);
     result += generateSection(sections.talks);

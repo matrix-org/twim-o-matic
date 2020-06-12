@@ -9,7 +9,8 @@
     "multi arch synapse docker image": {},
     "Matrix Notepad": {},
     "simplematrixlib": {},
-    "mx-puppet-bridge": {
+    "https://github.com/Sorunome/mx-puppet-bridge": {
+        "title": "mx-puppet-bridge",
         "summary": "[mx-puppet-bridge](https://github.com/Sorunome/mx-puppet-bridge) is a general bridging library that supports (double)bridging and relays. The goal is to make it as easy as possible for others to bridge new third-party protocols to matrix. [Support room](https://matrix.to/#/#mx-puppet-bridge:sorunome.de) [Donate](https://liberapay.com/Sorunome)"
     },
     "mx-puppet-voipms" : {
@@ -51,7 +52,8 @@
         "summary": "This [Ansible playbook](https://github.com/spantaleev/matrix-docker-ansible-deploy) is meant to easily let you run your own Matrix homeserver.",
         "section": "ops"
     },
-    "riot web": {
+    "https://github.com/vector-im/riot-web": {
+        "title": "Riot Web",
         "summary": "A glossy Matrix collaboration client for the web. https://riot.im"
     },
     "https://github.com/devture/matrix-corporal": {
@@ -77,5 +79,14 @@
         "title": "Nio",
         "summary": "[Nio](https://nio.chat) is a client written with SwiftUI",
         "section": "clients"
+    },
+    "https://github.com/dacruz21/matrix-chart": {
+        "title": "Matrix Helm chart",
+        "summary": "Kubernetes Helm chart for easily deploying a Matrix homeserver stack",
+        "section": "ops"
+    },
+    "https://github.com/dereisele/tuple-weather-example": {
+        "title": "Tuple Weather Station Example",
+        "section": "iot"
     }
 }

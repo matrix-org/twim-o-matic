@@ -2,12 +2,19 @@
     "todo": {"title": "TODO UNKNOWN SECTION"},
     "status": {"title": "Dept of *Status of Matrix* 🌡"},
     "servers": {"title": "Dept of Servers 🏢"},
-    "synapse-deployment": {"title": "Synapse Deployment 📥"},
+    "synapse-deployment": {
+        "title": "Synapse Deployment 📥",
+        "hints": [
+            "k8s-optimized synapse images",
+            "synapse images"
+        ]
+    },
     "bridges": {
         "title": "Dept of Bridges 🌉",
         "hints": [
             "mautrix-telegram",
             "bridge",
+            "bridges",
             "bridging",
             "mautrix-whatsapp",
             "plumb",
@@ -42,7 +49,11 @@
             "riotx",
             "markdown",
             "context menu",
-            "sso"
+            "sso",
+            "matrix-static",
+            "radical-native",
+            "desktop",
+            "chat client"
         ]
     },
     "bots": {"title": "Dept of Bots 🤖"},
@@ -70,7 +81,13 @@
     },
     "encryption": {"title": "Dept of Encryption 🔐"},
     "blockchain": {"title": "Dept of Blockchain 🤷‍"},
-    "spec": {"title": "Dept of Spec 📜"},
+    "spec": {
+        "title": "Dept of Spec 📜",
+        "hints": [
+            "https://matrix.org/docs/spec/proposals",
+            "weekly spec update"
+        ]
+    },
     "welcome": {"title": "Dept of Welcomes 👐"},
     "talks": {"title": "Dept of Events and Talks 🗣"},
     "projects": {"title": "Dept of Interesting Projects 🛰"},
@@ -80,9 +97,24 @@
     "rooms": {
         "title": "New Public Rooms 🏟",
         "hints": [
-            "created a room"
+            "created a room",
+            "new room"
         ]
     },
     "hackathons": {"title": "Dept of Hackathons 🍕"},
-    "guides": {"title": "Dept of Guides 🧭"}
+    "guides": {
+        "title": "Dept of Guides 🧭",
+        "hints": [
+            "this post"
+        ]
+    },
+    "gsoc": {
+        "title": "Dept of GSoC 🎓",
+        "hints": [
+            "gsoc"
+        ]
+    },
+    "iot": {
+        "title": "Dept of Internet of Things 💡"
+    }
 }
