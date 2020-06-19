@@ -88,5 +88,13 @@
     "https://github.com/dereisele/tuple-weather-example": {
         "title": "Tuple Weather Station Example",
         "section": "iot"
+    },
+    "https://github.com/go-gitea/gitea": {
+        "title": "Gitea",
+        "section": "ops"
+    },
+    "https://github.com/opsdroid/opsdroid": {
+        "title": "Opsdroid",
+        "section": "bots"
     }
 }

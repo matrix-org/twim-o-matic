@@ -1,12 +1,21 @@
 {
     "todo": {"title": "TODO UNKNOWN SECTION"},
-    "status": {"title": "Dept of *Status of Matrix* 🌡"},
+    "status": {
+        "title": "Dept of *Status of Matrix* 🌡",
+        "hints": [
+            "scientific paper",
+            "doi.org",
+            "sacmat.org",
+            "shop.matrix.org"
+        ]
+    },
     "servers": {"title": "Dept of Servers 🏢"},
     "synapse-deployment": {
         "title": "Synapse Deployment 📥",
         "hints": [
-            "k8s-optimized synapse images",
-            "synapse images"
+            "k8s-optimized synapse image",
+            "synapse images",
+            "k8s"
         ]
     },
     "bridges": {
@@ -29,7 +38,8 @@
     "ops": {
         "title": "Dept of Ops 🛠",
         "hints": [
-            "cli_federation-tester_de"
+            "cli_federation-tester_de",
+            "k8s"
         ]
     },
     "clients": {
@@ -115,6 +125,10 @@
         ]
     },
     "iot": {
-        "title": "Dept of Internet of Things 💡"
+        "title": "Dept of Internet of Things 💡",
+        "hints": [
+            "gitlab.com/webthings",
+            "iot"
+        ]
     }
 }

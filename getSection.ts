@@ -29,12 +29,12 @@ export default function (bodyLower: any, section: string) {
         bodyLower.includes("gomuks")) {
         section = "clients";
     }
-    else if (bodyLower.includes("bridge") ||
-        bodyLower.includes("appservice") ||
-        bodyLower.includes("bridging") ||
-        bodyLower.includes("mautrix-facebook")) {
-        section = "bridges";
-    }
+    // else if (bodyLower.includes("bridge") ||
+    //     bodyLower.includes("appservice") ||
+    //     bodyLower.includes("bridging") ||
+    //     bodyLower.includes("mautrix-facebook")) {
+    //     section = "bridges";
+    // }
     else if (bodyLower.includes("bot")) {
         section = "bots";
     }
@@ -46,7 +46,6 @@ export default function (bodyLower: any, section: string) {
     }
     else if (bodyLower.includes("docker") ||
         bodyLower.includes("kubernetes") ||
-        bodyLower.includes("k8s") ||
         bodyLower.includes("ma1sd")) {
         section = "ops";
     }
@@ -74,11 +73,11 @@ export default function (bodyLower: any, section: string) {
         bodyLower.includes("federation")) {
         section = "servers";
     }
-    else if (bodyLower.includes("zapier") ||
-        bodyLower.includes("zammad") ||
-        bodyLower.includes("discord")) {
-        section = "bridges";
-    }
+    // else if (bodyLower.includes("zapier") ||
+    //     bodyLower.includes("zammad") ||
+    //     bodyLower.includes("discord")) {
+    //     section = "bridges";
+    // }
     else if (bodyLower.includes("work") ||
         bodyLower.includes("full time") ||
         bodyLower.includes("full-time")) {
