@@ -1,6 +1,9 @@
 {
-    "todo": {"title": "TODO UNKNOWN SECTION"},
+    "todo": {
+        "title": "TODO UNKNOWN SECTION"
+    },
     "status": {
+        "icon": "🌡",
         "title": "Dept of *Status of Matrix* 🌡",
         "hints": [
             "scientific paper",
@@ -9,8 +12,12 @@
             "shop.matrix.org"
         ]
     },
-    "servers": {"title": "Dept of Servers 🏢"},
+    "servers": {
+        "icon": "🏢",
+        "title": "Dept of Servers 🏢"
+    },
     "synapse-deployment": {
+        "icon": "📥",
         "title": "Synapse Deployment 📥",
         "hints": [
             "k8s-optimized synapse image",
@@ -19,6 +26,7 @@
         ]
     },
     "bridges": {
+        "icon": "🌉",
         "title": "Dept of Bridges 🌉",
         "hints": [
             "mautrix-telegram",
@@ -34,8 +42,12 @@
             "mautrix-facebook"
         ]
     },
-    "services": {"title": "Dept of Services 🚀"},
+    "services": {
+        "icon": "🚀",
+        "title": "Dept of Services 🚀"
+    },
     "ops": {
+        "icon": "🛠",
         "title": "Dept of Ops 🛠",
         "hints": [
             "cli_federation-tester_de",
@@ -43,6 +55,7 @@
         ]
     },
     "clients": {
+        "icon": "📱",
         "title": "Dept of Clients 📱",
         "hints": [
             "fluffy",
@@ -66,10 +79,20 @@
             "chat client"
         ]
     },
-    "bots": {"title": "Dept of Bots 🤖"},
-    "thoughts": {"title": "Final Thoughts 💭"},
-    "eventvideos": {"title": "Dept of Event Videos 📹"},
+    "bots": {
+        "icon": "🤖",
+        "title": "Dept of Bots 🤖"
+    },
+    "thoughts": {
+        "icon": "💭",
+        "title": "Final Thoughts 💭"
+    },
+    "eventvideos": {
+        "icon": "📹",
+        "title": "Dept of Event Videos 📹"
+    },
     "sdks": {
+        "icon": "🧰",
         "title": "Dept of SDKs and Frameworks 🧰",
         "hints": [
             "simplematrixlib",
@@ -89,42 +112,74 @@
             "matrix_sdk"
         ]
     },
-    "encryption": {"title": "Dept of Encryption 🔐"},
-    "blockchain": {"title": "Dept of Blockchain 🤷‍"},
+    "encryption": {
+        "icon": "🔐",
+        "title": "Dept of Encryption 🔐"
+    },
+    "blockchain": {
+        "icon": "🤷",
+        "title": "Dept of Blockchain 🤷‍"
+    },
     "spec": {
+        "icon": "📜",
         "title": "Dept of Spec 📜",
         "hints": [
             "https://matrix.org/docs/spec/proposals",
             "weekly spec update"
         ]
     },
-    "welcome": {"title": "Dept of Welcomes 👐"},
-    "talks": {"title": "Dept of Events and Talks 🗣"},
-    "projects": {"title": "Dept of Interesting Projects 🛰"},
-    "news": {"title": "Matrix in the News 📰"},
-    "build": {"title": "Dept of *Built on Matrix* 🏗"},
-    "jobs": {"title": "Dept of Jobs 💰"},
+    "welcome": {
+        "icon": "👐",
+        "title": "Dept of Welcomes 👐"
+    },
+    "talks": {
+        "icon": "🗣",
+        "title": "Dept of Events and Talks 🗣"
+    },
+    "projects": {
+        "icon": "🛰",
+        "title": "Dept of Interesting Projects 🛰"
+    },
+    "news": {
+        "icon": "📰",
+        "title": "Matrix in the News 📰"
+    },
+    "build": {
+        "icon": "🏗",
+        "title": "Dept of *Built on Matrix* 🏗"
+    },
+    "jobs": {
+        "icon": "💰",
+        "title": "Dept of Jobs 💰"
+    },
     "rooms": {
+        "icon": "🏟",
         "title": "New Public Rooms 🏟",
         "hints": [
             "created a room",
             "new room"
         ]
     },
-    "hackathons": {"title": "Dept of Hackathons 🍕"},
+    "hackathons": {
+        "icon": "🍕",
+        "title": "Dept of Hackathons 🍕"
+    },
     "guides": {
+        "icon": "🧭",
         "title": "Dept of Guides 🧭",
         "hints": [
             "this post"
         ]
     },
     "gsoc": {
+        "icon": "",
         "title": "Dept of GSoC 🎓",
         "hints": [
             "gsoc"
         ]
     },
     "iot": {
+        "icon": "💡",
         "title": "Dept of Internet of Things 💡",
         "hints": [
             "gitlab.com/webthings",
