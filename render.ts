@@ -9,7 +9,6 @@ import {
     createWriteStream
 } from "fs";
 import ping from "./ping";
-import getSection from "./getSection";
 import getProjectInfo from "./getProjectInfo";
 const axios = require('axios').default;
 const { program } = require('commander');
@@ -19,13 +18,13 @@ program
   .option('-m, --media', 'download and process media')
   .option('-p, --pings', 'get ping-room data');
 program.parse(process.argv);
+import moment = require('moment');
 
 const homeserverUrl = require("./config/access_token.json").homeserver;
 const accessToken = require("./config/access_token.json").accessToken;
 const userId = require("./config/access_token.json").userId;
 const senders = require("./data/senders.json");
 const sections = require("./data/sections.json");
-const projects = require("./data/projects.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
@@ -320,8 +319,13 @@ function generateSection(section) {
 }
 
 async function main() {
-
-    var eventsFiles = readdirSync('./events').filter(fn => fn.startsWith(`events-${ds()}`));
+    const friday = 5;
+    let dateSince = moment().add(-1, 'weeks').isoWeekday(friday); // last friday
+    var eventsFiles = readdirSync('./events').filter(fn => {
+        return fn.substring(7,17) > dateSince.format('YYYY-MM-DD')
+    });
+    console.log("Events files:");
+    console.log(eventsFiles);
     var eventsToHandle = [];
     eventsFiles.forEach(fn => {
         var fileContentsArr = readFileSync(`events/${fn}`, 'utf-8').split('\n');

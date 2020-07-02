@@ -8,6 +8,7 @@
     "axios": "^0.19.2",
     "commander": "^5.1.0",
     "matrix-bot-sdk": "^0.5.4",
+    "moment": "^2.27.0",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },
