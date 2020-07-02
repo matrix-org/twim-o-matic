@@ -89,6 +89,7 @@ export default function (body: string) {
         section: section,
         scores: sections,
         summary: summary,
-        hintsFound: hintsFound
+        hintsFound: hintsFound,
+        sectionSet: ""
     }
 }

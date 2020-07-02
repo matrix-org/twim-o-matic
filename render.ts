@@ -53,6 +53,14 @@ function generateSignOff() {
     return `${title}\n\n${messages[0]}\n\n${urls}\n`;
 }
 
+function getSectionFromIcon(icon:string) {
+    for (let s of Object.keys(sections)) {
+        if (sections[s].icon === icon) {
+            return s;
+        }
+    }
+}
+
 var output = {};
 var pings = "";
 var prevSection = "";
@@ -90,19 +98,25 @@ function handleEvent(event, title, mode, sectionOverride) {
     body = body.replace(/^TWIM\n/gm, "");
     body = body.trim();
 
-    // next determine the section
+    // get project info
     var section = 'todo';
     var bodyLower = body.toLowerCase();
     var projectInfo = getProjectInfo(bodyLower);
-    if (projectInfo.section) {
+
+    // get section
+    if (sectionOverride) {
+        section = sectionOverride;
+    }
+    else if (! ["👀", "🧹"].includes(mode)) {
+        section = getSectionFromIcon(mode);
+        projectInfo.sectionSet = "Section set by mode";
+    }
+    else if (projectInfo.section) {
         section = projectInfo.section;
     } else {
-        //section = getSection(bodyLower, section);
+        // do nothing, leave it as 'todo'
     }
     section = sections[section].title;
-    if (sectionOverride) {
-        section = sections[sectionOverride].title;
-    }
     
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
