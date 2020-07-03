@@ -17,8 +17,8 @@
         "title": "Dept of Servers 🏢"
     },
     "synapse-deployment": {
-        "icon": "📥",
-        "title": "Synapse Deployment 📥",
+        "icon": "📥️",
+        "title": "Synapse Deployment 📥️",
         "hints": [
             "k8s-optimized synapse image",
             "synapse images",
@@ -172,8 +172,8 @@
         ]
     },
     "gsoc": {
-        "icon": "🎓",
-        "title": "Dept of GSoC 🎓",
+        "icon": "🎓️",
+        "title": "Dept of GSoC 🎓️",
         "hints": [
             "gsoc"
         ]
