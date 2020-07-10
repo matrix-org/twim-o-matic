@@ -73,6 +73,11 @@ async function getEvent(eventId) {
 }
 
 function handleEvent(event, title, mode, sectionOverride) {
+    let reactions = event.unsigned['m.relations']['m.annotation'].chunk;
+    // let considered = Object.values(sections)
+    //     .map(function(s:any) { return s.icon });
+    // let filtered = reactions.filter(function(r:any) { return considered.includes(r.key) })
+
     var written = false;
 
     // first extract the body content
@@ -109,7 +114,6 @@ function handleEvent(event, title, mode, sectionOverride) {
     
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    var reactions = event.unsigned['m.relations']['m.annotation'].chunk;
     const score = reactions.map(r => r.count).reduce(reducer);
 
     // set the title line
