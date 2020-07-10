@@ -30,14 +30,14 @@ const activeRoom = twimRoomId;
 const watchDate = new Date().toISOString();
 
 const watchEmoji = Object.values(sections)
-    .filter(function(s:any)  {return s.icon !== undefined})
-    .map(function(s:any)  {return s.icon});
+    .filter(function (s: any) { return s.icon !== undefined })
+    .map(function (s: any) { return s.icon });
 watchEmoji.push("🧹");
 watchEmoji.push("👀");
 console.log("twim-o-matic is watching for the following emoji:");
 console.log(JSON.stringify(watchEmoji));
 
-client.on("room.event", async function(roomId, event) {
+client.on("room.event", async function (roomId, event) {
     if (roomId !== activeRoom) {
         return;
     }
@@ -47,20 +47,36 @@ client.on("room.event", async function(roomId, event) {
     if (event.type !== "m.reaction") {
         return
     }
-    if (! event.content || ! event.content['m.relates_to']) {
+    if (!event.content || !event.content['m.relates_to']) {
         return;
     }
     let matchedEmoji = watchEmoji.includes(event.content['m.relates_to'].key);
-    console.log(`Reaction event` + 
-    `\n\tfrom: ${event.sender}` + 
-    `\n\tkey: ${event.content['m.relates_to'].key}` +
-    `\n\tevent: ${event.content['m.relates_to'].event_id}` +
-    `\n\tmatched: ${matchedEmoji} (${JSON.stringify(watchEmoji)})`);
+    console.log(`Reaction event` +
+        `\n\tfrom: ${event.sender}` +
+        `\n\tkey: ${event.content['m.relates_to'].key}` +
+        `\n\tevent: ${event.content['m.relates_to'].event_id}` +
+        `\n\tmatched: ${matchedEmoji} (${JSON.stringify(watchEmoji)})`);
     if (!matchedEmoji) {
         return;
     }
-    var event_id = event.content['m.relates_to'].event_id;
-    var key = event.content['m.relates_to'].key;
-    
-    appendFileSync(`events/events-${watchDate}.txt`, `${event_id},${key}\n`);
+    processMatch(
+        event.content['m.relates_to'].event_id,
+        event.content['m.relates_to'].key
+    );
 });
+
+async function processMatch(event_id, key) {
+    appendFileSync(`events/events-${watchDate}.txt`, `${event_id},${key}\n`);
+
+    let testRoomId = "!UpevrrilOuZdxLWcHj:bpulse.org";
+    let events = {events: []};
+    try {
+        events = await client.getRoomStateEvent(testRoomId, "b.twim", "events");
+        if (! events.events.includes(event_id)) {
+            events.events.push(event_id);
+            client.sendStateEvent(testRoomId, "b.twim", "events", events);
+        }
+    } catch (ex) {
+        console.log(ex.body);
+    } 
+}
