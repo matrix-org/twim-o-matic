@@ -185,5 +185,10 @@
             "gitlab.com/webthings",
             "iot"
         ]
+    },
+    "p2p": {
+        "icon": "👥",
+        "title": "Dept of P2P 👥",
+        "hints" : []
     }
 }

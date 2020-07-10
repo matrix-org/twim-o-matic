@@ -288,6 +288,7 @@ function outputAll() {
     result += generateSection(sections.status);
     result += generateSection(sections.spec);
     result += generateSection(sections.gsoc);
+    result += generateSection(sections.p2p);
     result += generateSection(sections.servers);
     result += generateSection(sections["synapse-deployment"]);
     result += generateSection(sections.bridges);
