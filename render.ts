@@ -72,18 +72,7 @@ async function getEvent(eventId) {
     return event;
 }
 
-function handleAddition(event) {
-    var oldEvent = output[prevSection]
-        .find(e => {return e.event_id === prevEventId});
-    oldEvent.content += `\nTODO ${event.sender}: ${event.content.body}${program.debug ? event.event_id : "" }\n`;
-}
-
 function handleEvent(event, title, mode, sectionOverride) {
-    if (mode === "✍︎") {
-        handleAddition(event);
-        return;
-    }
-
     var written = false;
 
     // first extract the body content
@@ -254,19 +243,6 @@ async function downloadImage (url, path) {
     })
 }
 
-function manualAddEvent(title, text, section) {
-    const titleLine = `### ${title}\n\n`;
-    const senderLine:String = `TODO ${getSaidBookism()}:\n\n`;
-    const body = text.replace(/^/gm, `> `);
-    if (!output[section]) output[section] = {};
-    output[section][title] = `${titleLine}${senderLine}${body}\n\n`;
-    
-}
-
-function appendEvent(rootEventId, newEvent, section) {
-    output[section][rootEventId] += `> ${newEvent.content.body}  \n`;
-}
-
 function generateHeader() {
     if (program.debug) return "";
 
@@ -361,9 +337,6 @@ async function main() {
         pings = await ping();
     }
     
-    //handleEvent(await getEvent("$15655651651446947hOnwk:matrix.org"), "This Week in Rust", sections.servers);
-    //manualAddEvent("Bluepill (Sailfish client) status update", `Users can now download [artifacts from my gitlab account](https://gitlab.com/cy8aer/bluepill/pipelines) since I got an SDK container from CoDerus running, cross compiling to Sailfish-RPMs in the Gitlab-Ci.\nBut my programming progress on \`master\` looks a bit silent because I swap to [https://github.com/poljar/matrix-nio](vector://vector/webapp/matrix-nio).`, sections.clients);
-    //appendEvent("$15657737670VyoXM:kittenface.studio", await getEvent("$15657745573qgJxE:kittenface.studio"), sections.ops)
     outputAll();
 }
 
