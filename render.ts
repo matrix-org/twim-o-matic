@@ -72,7 +72,12 @@ async function getEvent(eventId) {
     return event;
 }
 
-function handleEvent(event, title, mode, sectionOverride) {
+async function getUserDisplayname(mxid) {
+    let up = await client.getUserProfile(mxid)
+    return up;
+}
+
+async function handleEvent(event, title, mode, sectionOverride) {
     let reactions = event.unsigned['m.relations']['m.annotation'].chunk;
     // let considered = Object.values(sections)
     //     .map(function(s:any) { return s.icon });
@@ -153,7 +158,8 @@ function handleEvent(event, title, mode, sectionOverride) {
                 senderLine += `(https://matrix.to/#/${event.sender})`;
             }
         } else {
-            senderLine = `TODO MISSING NAME [${event.sender}](https://matrix.to/#/${event.sender})`;
+            senderLine = `TODO CACHE MISSING NAME [${(await getUserDisplayname(event.sender)).displayname}](https://matrix.to/#/${event.sender})`;
+
         }
         senderLine += ` ${getSaidBookism()}:\n\n`;
     }
