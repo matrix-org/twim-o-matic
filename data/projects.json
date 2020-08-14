@@ -31,6 +31,7 @@
         "summary": "Ruma is a Rust project to create a comprehensive set of APIs for Matrix. Previously there was a Ruma homeserver project."
     },
     "dendrite": {
+        "title": "Dendrite",
         "summary": "Dendrite is a next-generation homeserver written in Go"
     },
     "https://git.koesters.xyz/timo/conduit": {
