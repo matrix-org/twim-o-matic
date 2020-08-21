@@ -193,17 +193,21 @@ async function handleEvent(event, title, mode, sectionOverride) {
 
     if (["m.video", "m.image"].includes(event.content.msgtype)) {
         if (! program.media) return;
-
-        titleLine = "### TODO GET IMAGE\n\n";
-        var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
-        var filename = body.replace('> ', '').replace(/ /g, "");
-        filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
-        downloadImage(url, `blog/img/${filename}`);
-        body = `![${filename}](blog/img/${filename})`;
-        if (prevSender === event.sender) {
-            output[prevSection][output[prevSection].length-1].content += `\n${body}\n`;
-            written = true;
+        if (event.content.url) {
+            titleLine = "### TODO GET IMAGE\n\n";
+            var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
+            var filename = body.replace('> ', '').replace(/ /g, "");
+            filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
+            downloadImage(url, `blog/img/${filename}`);
+            body = `![${filename}](blog/img/${filename})`;
+            if (prevSender === event.sender) {
+                output[prevSection][output[prevSection].length-1].content += `\n${body}\n`;
+                written = true;
+            }
+        } else {
+            titleLine = `### TODO MEDIA EVENT with missing content.url: ${event.event_id}\n\n`;
         }
+
     } else {
         prevSection = section;
         prevSender = event.sender;
