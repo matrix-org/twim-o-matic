@@ -77,7 +77,7 @@ async function getUserDisplayname(mxid) {
     return up;
 }
 
-async function handleEvent(event, title, mode, sectionOverride) {
+async function handleEvent(event, title, mode, sectionOverride, notes) {
     let reactions = event.unsigned['m.relations']['m.annotation'].chunk;
     // let considered = Object.values(sections)
     //     .map(function(s:any) { return s.icon });
@@ -235,7 +235,7 @@ async function handleEvent(event, title, mode, sectionOverride) {
 
     output[section].push({
         score: score,
-        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n`,
+        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n\n${notes}}\n`,
         event_id: event.event_id
     });
 }
@@ -324,27 +324,18 @@ function generateSection(section) {
 }
 
 async function main() {
-    const friday = 5;
-    let dateSince = moment().add(-1, 'weeks').isoWeekday(friday); // last friday
-    var eventsFiles = readdirSync('./events').filter(fn => {
-        return fn.substring(7,17) > dateSince.format('YYYY-MM-DD')
-    });
-    console.log("Events files:");
-    console.log(eventsFiles);
-    var eventsToHandle = [];
-    eventsFiles.forEach(fn => {
-        var fileContentsArr = readFileSync(`events/${fn}`, 'utf-8').split('\n');
-        eventsToHandle = eventsToHandle.concat(fileContentsArr);
-    })
-    for(var line of eventsToHandle) {
-        if (line.length === 0) continue;
-
-        line = line.split(",");
+    let testRoomId = "!UpevrrilOuZdxLWcHj:bpulse.org";
+    let eventsToHandle = await client.getRoomStateEvent(testRoomId, "b.twim", "entries");
+    for (var entry of eventsToHandle.entries) {
         try {
-            handleEvent(await getEvent(line[0]), "TODO", line[1], line[2])
+            let event = await getEvent(entry.events[0]);
+            entry.transforms.forEach(t => {
+                event.content.body = event.content.body.replace(new RegExp(t[0], t[1]))
+            });
+            handleEvent(event, "TODO", entry.key, undefined, entry.notes[0])
         } catch (ex) {
             console.log(ex.body);
-            console.log(line);
+            console.log(entry);
         }
     }
     if (program.pings) {
