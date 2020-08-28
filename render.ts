@@ -27,6 +27,7 @@ const userId = require("./config/access_token.json").userId;
 const senders = require("./data/senders.json");
 const sections = require("./data/sections.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
+let testRoomId = "!UpevrrilOuZdxLWcHj:bpulse.org";
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
@@ -78,7 +79,7 @@ async function getUserDisplayname(mxid) {
     return up;
 }
 
-async function handleEvent(event, title, mode, sectionOverride, notes) {
+async function handleEvent(event, title, mode, sectionOverride, notes, transforms) {
     let reactions = event.unsigned['m.relations']['m.annotation'].chunk;
     // let considered = Object.values(sections)
     //     .map(function(s:any) { return s.icon });
@@ -237,7 +238,9 @@ async function handleEvent(event, title, mode, sectionOverride, notes) {
     output[section].push({
         score: score,
         content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n\n${notes?notes:""}\n`,
-        event_id: event.event_id
+        event_id: event.event_id,
+        notes: notes,
+        transforms: transforms
     });
 }
 
@@ -316,6 +319,13 @@ function outputAll() {
     }
 }
 
+async function addNoteToEvent(event_id, note) {
+    let eventsToHandle = await client.getRoomStateEvent(testRoomId, "b.twim", "entries");
+    let index = eventsToHandle.findIndex(e=> e.events[0] === event_id);
+    eventsToHandle[index].notes[0] = note;
+    await client.sendStateEvent(testRoomId, "b.twim", "entries", eventsToHandle);
+}
+
 function generateSection(section) {
     if (! output[section.title]) return "";
 
@@ -329,7 +339,6 @@ function generateSection(section) {
 }
 
 async function main() {
-    let testRoomId = "!UpevrrilOuZdxLWcHj:bpulse.org";
     let eventsToHandle = await client.getRoomStateEvent(testRoomId, "b.twim", "entries");
     for (var entry of eventsToHandle.entries) {
         try {
@@ -337,7 +346,7 @@ async function main() {
             entry.transforms.forEach(t => {
                 event.content.body = event.content.body.replace(new RegExp(t[0], t[1]))
             });
-            await handleEvent(event, "TODO", entry.key, undefined, entry.notes[0])
+            await handleEvent(event, "TODO", entry.key, undefined, entry.notes[0], entry.transforms)
         } catch (ex) {
             console.log(ex.body);
             console.log(entry);

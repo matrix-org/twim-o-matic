@@ -1,6 +1,17 @@
 html
+    head
+        title="TWIM preview"
     body
         each val in messages
-            pre=val.content
-            pre=val.event_id
+            div(style={float:"left", width: "75%"})
+                pre(style={"white-space":"pre-wrap"})=val.content
+                pre=val.event_id
+            div(style={float:"left"})
+                div
+                    each transform in val.transforms
+                        div
+                div
+                    textarea=val.notes
+                    button="Notes"
+            br(clear="all")
             hr
