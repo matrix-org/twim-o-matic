@@ -16,7 +16,8 @@ program
   .option('-d, --debug', 'output all the json blocks, suppress header')
   .option('-s, --summary', 'highlight missing summary blocks')
   .option('-m, --media', 'download and process media')
-  .option('-p, --pings', 'get ping-room data');
+  .option('-p, --pings', 'get ping-room data')
+  .option('-w, --web', 'start a server to render the result');
 program.parse(process.argv);
 import moment = require('moment');
 
@@ -235,7 +236,7 @@ async function handleEvent(event, title, mode, sectionOverride, notes) {
 
     output[section].push({
         score: score,
-        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n\n${notes}}\n`,
+        content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n\n${notes?notes:""}\n`,
         event_id: event.event_id
     });
 }
@@ -309,6 +310,22 @@ function outputAll() {
     result = result.replace(regex, subst);
     //console.log(result);
     writeFileSync("out.md", result);
+
+    if (program.web) {
+        const express = require("express");
+        const app = express();
+        app.set('view engine', 'pug');
+        console.log(output[sections.clients.title])
+        app.get('/', function(req, res) {
+            res.render('twim', {
+                messages: output[sections.clients.title].map(e => e.content)
+            });
+        });
+        let port = 9001
+        app.listen(port, function() {
+            console.log("listening on " + port);
+        })
+    }
 }
 
 function generateSection(section) {

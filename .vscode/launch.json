@@ -20,7 +20,8 @@
             "program": "${workspaceFolder}/render.js",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
-            ]
+            ],
+            "args": ["-w"]
         },
         {
             "type": "node",
