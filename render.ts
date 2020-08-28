@@ -275,32 +275,19 @@ function outputAll() {
     var result:string = "";
     result += generateHeader();
     result += `## Matrix Live 🎙\n\n`;
-    result += generateSection(sections.todo);
-    result += generateSection(sections.status);
-    result += generateSection(sections.spec);
-    result += generateSection(sections.gsoc);
-    result += generateSection(sections.p2p);
-    result += generateSection(sections.servers);
-    result += generateSection(sections["synapse-deployment"]);
-    result += generateSection(sections.bridges);
-    result += generateSection(sections.clients);
-    result += generateSection(sections.encryption);
-    result += generateSection(sections.sdks);
-    result += generateSection(sections.ops);
-    result += generateSection(sections.services);
-    result += generateSection(sections.blockchain);
-    result += generateSection(sections.iot);
-    result += generateSection(sections.bots);
-    result += generateSection(sections.eventvideos);
-    result += generateSection(sections.talks);
-    result += generateSection(sections.projects);
-    result += generateSection(sections.guides);
-    result += generateSection(sections.hackathons);
-    result += generateSection(sections.jobs);
-    result += generateSection(sections.news);
-    result += generateSection(sections.rooms);
-    result += generateSection(sections.welcome);
-    result += generateSection(sections.thoughts);
+    let separated = [];
+
+    let sortedSections = Object.values(sections).sort((a:any, b:any) => {
+        return a.order - b.order;
+    });
+    sortedSections.forEach((section: any) => {
+        result += generateSection(section);
+
+        if (output[section.title]) {
+            separated = separated.concat(output[section.title])
+        }
+    });
+    
     result += pings;
     result += generateSignOff();
 
@@ -316,9 +303,10 @@ function outputAll() {
         const app = express();
         app.set('view engine', 'pug');
         console.log(output[sections.clients.title])
+
         app.get('/', function(req, res) {
             res.render('twim', {
-                messages: output[sections.clients.title].map(e => e.content)
+                messages: separated
             });
         });
         let port = 9001
@@ -349,7 +337,7 @@ async function main() {
             entry.transforms.forEach(t => {
                 event.content.body = event.content.body.replace(new RegExp(t[0], t[1]))
             });
-            handleEvent(event, "TODO", entry.key, undefined, entry.notes[0])
+            await handleEvent(event, "TODO", entry.key, undefined, entry.notes[0])
         } catch (ex) {
             console.log(ex.body);
             console.log(entry);

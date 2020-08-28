@@ -1,8 +1,10 @@
 {
     "todo": {
+        "order": 100,
         "title": "TODO UNKNOWN SECTION"
     },
     "status": {
+        "order": 200,
         "icon": "🌡️",
         "title": "Dept of *Status of Matrix* 🌡️",
         "hints": [
@@ -12,11 +14,36 @@
             "shop.matrix.org"
         ]
     },
+    "spec": {
+        "order": 300,
+        "icon": "📜",
+        "title": "Dept of Spec 📜",
+        "hints": [
+            "https://matrix.org/docs/spec/proposals",
+            "weekly spec update"
+        ]
+    },
+    "gsoc": {
+        "order": 400,
+        "icon": "🎓️",
+        "title": "Dept of GSoC 🎓️",
+        "hints": [
+            "gsoc"
+        ]
+    },
+    "p2p": {
+        "order": 600,
+        "icon": "👥",
+        "title": "Dept of P2P 👥",
+        "hints" : []
+    },
     "servers": {
+        "order": 700,
         "icon": "🏢",
         "title": "Dept of Servers 🏢"
     },
     "synapse-deployment": {
+        "order": 800,
         "icon": "📥️",
         "title": "Synapse Deployment 📥️",
         "hints": [
@@ -26,6 +53,7 @@
         ]
     },
     "bridges": {
+        "order": 900,
         "icon": "🌉",
         "title": "Dept of Bridges 🌉",
         "hints": [
@@ -42,19 +70,8 @@
             "mautrix-facebook"
         ]
     },
-    "services": {
-        "icon": "🚀",
-        "title": "Dept of Services 🚀"
-    },
-    "ops": {
-        "icon": "🛠️",
-        "title": "Dept of Ops 🛠",
-        "hints": [
-            "cli_federation-tester_de",
-            "k8s"
-        ]
-    },
     "clients": {
+        "order": 1000,
         "icon": "📱",
         "title": "Dept of Clients 📱",
         "hints": [
@@ -79,19 +96,13 @@
             "chat client"
         ]
     },
-    "bots": {
-        "icon": "🤖",
-        "title": "Dept of Bots 🤖"
-    },
-    "thoughts": {
-        "icon": "💭",
-        "title": "Final Thoughts 💭"
-    },
-    "eventvideos": {
-        "icon": "📹",
-        "title": "Dept of Event Videos 📹"
+    "encryption": {
+        "order": 1100,
+        "icon": "🔐",
+        "title": "Dept of Encryption 🔐"
     },
     "sdks": {
+        "order": 1200,
         "icon": "🧰",
         "title": "Dept of SDKs and Frameworks 🧰",
         "hints": [
@@ -112,73 +123,27 @@
             "matrix_sdk"
         ]
     },
-    "encryption": {
-        "icon": "🔐",
-        "title": "Dept of Encryption 🔐"
+    "ops": {
+        "order": 1300,
+        "icon": "🛠️",
+        "title": "Dept of Ops 🛠",
+        "hints": [
+            "cli_federation-tester_de",
+            "k8s"
+        ]
+    },
+    "services": {
+        "order": 1400,
+        "icon": "🚀",
+        "title": "Dept of Services 🚀"
     },
     "blockchain": {
+        "order": 1500,
         "icon": "🤷",
         "title": "Dept of Blockchain 🤷‍"
     },
-    "spec": {
-        "icon": "📜",
-        "title": "Dept of Spec 📜",
-        "hints": [
-            "https://matrix.org/docs/spec/proposals",
-            "weekly spec update"
-        ]
-    },
-    "welcome": {
-        "icon": "👐",
-        "title": "Dept of Welcomes 👐"
-    },
-    "talks": {
-        "icon": "🗣",
-        "title": "Dept of Events and Talks 🗣"
-    },
-    "projects": {
-        "icon": "🛰️",
-        "title": "Dept of Interesting Projects 🛰️"
-    },
-    "news": {
-        "icon": "📰",
-        "title": "Matrix in the News 📰"
-    },
-    "build": {
-        "icon": "🏗",
-        "title": "Dept of *Built on Matrix* 🏗"
-    },
-    "jobs": {
-        "icon": "💰️",
-        "title": "Dept of Jobs 💰️"
-    },
-    "rooms": {
-        "icon": "🏟",
-        "title": "New Public Rooms 🏟",
-        "hints": [
-            "created a room",
-            "new room"
-        ]
-    },
-    "hackathons": {
-        "icon": "🍕",
-        "title": "Dept of Hackathons 🍕"
-    },
-    "guides": {
-        "icon": "🧭",
-        "title": "Dept of Guides 🧭",
-        "hints": [
-            "this post"
-        ]
-    },
-    "gsoc": {
-        "icon": "🎓️",
-        "title": "Dept of GSoC 🎓️",
-        "hints": [
-            "gsoc"
-        ]
-    },
     "iot": {
+        "order": 1600,
         "icon": "💡",
         "title": "Dept of Internet of Things 💡",
         "hints": [
@@ -186,9 +151,71 @@
             "iot"
         ]
     },
-    "p2p": {
-        "icon": "👥",
-        "title": "Dept of P2P 👥",
-        "hints" : []
+    "bots": {
+        "order": 1700,
+        "icon": "🤖",
+        "title": "Dept of Bots 🤖"
+    },
+    "eventvideos": {
+        "order": 1800,
+        "icon": "📹",
+        "title": "Dept of Event Videos 📹"
+    },
+    "talks": {
+        "order": 1900,
+        "icon": "🗣",
+        "title": "Dept of Events and Talks 🗣"
+    },
+    "projects": {
+        "order": 2000,
+        "icon": "🛰️",
+        "title": "Dept of Interesting Projects 🛰️"
+    },
+    "build": {
+        "order": 2050,
+        "icon": "🏗",
+        "title": "Dept of *Built on Matrix* 🏗"
+    },
+    "guides": {
+        "order": 2100,
+        "icon": "🧭",
+        "title": "Dept of Guides 🧭",
+        "hints": [
+            "this post"
+        ]
+    },
+    "hackathons": {
+        "order": 2200,
+        "icon": "🍕",
+        "title": "Dept of Hackathons 🍕"
+    },
+    "jobs": {
+        "order": 2300,
+        "icon": "💰️",
+        "title": "Dept of Jobs 💰️"
+    },
+    "news": {
+        "order": 2400,
+        "icon": "📰",
+        "title": "Matrix in the News 📰"
+    },
+    "rooms": {
+        "order": 2500,
+        "icon": "🏟",
+        "title": "New Public Rooms 🏟",
+        "hints": [
+            "created a room",
+            "new room"
+        ]
+    },
+    "welcome": {
+        "order": 3000,
+        "icon": "👐",
+        "title": "Dept of Welcomes 👐"
+    },
+    "thoughts": {
+        "order": 4000,
+        "icon": "💭",
+        "title": "Final Thoughts 💭"
     }
 }
