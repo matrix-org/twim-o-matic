@@ -19,13 +19,13 @@ LogService.setLogger(new RichConsoleLogger());
 LogService.setLevel(LogLevel.INFO);
 
 //s207322_14908813_3872_546544_6599_42_3612_90453_16
-const homeserverUrl = require("./config/access_token.json").homeserver;
-const accessToken = require("./config/access_token.json").accessToken;
-const userId = require("./config/access_token.json").userId;
+const config = require("./config/access_token.json")
+const homeserverUrl = config.homeserver;
+const accessToken = config.accessToken;
+const userId = config.userId;
+const testRoomId = config.testRoomId;
 const storage = new SimpleFsStorageProvider("config/twim-o-matic-reader.json");
 const sections = require("./data/sections.json");
-
-let testRoomId = "!UpevrrilOuZdxLWcHj:bpulse.org";
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
