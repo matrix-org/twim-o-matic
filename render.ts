@@ -201,7 +201,7 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
             var filename = body.replace('> ', '').replace(/ /g, "");
             filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
             downloadImage(url, `blog/img/${filename}`);
-            body = `![${filename}](blog/img/${filename})`;
+            body = `![${filename}](/blog/img/${filename})`;
             if (prevSender === event.sender) {
                 output[prevSection][output[prevSection].length-1].content += `\n${body}\n`;
                 written = true;
