@@ -29,6 +29,8 @@ To clear the stored list, use `node watch.js -c`. Do this for each new post or y
 
 When you have a collection, run: `node render.js`. This will read from the test room state list, and render the entries by writing some markdown to `out.md`, which will need some editing to make it presentable.
 
+Note the options for `render` in the section below. In general, to produce a final output you will use `render -mp`, `-m` to process media, and `-p` to process results from `#ping:maunium.net`.
+
 ## node watch --help
 
 ```
