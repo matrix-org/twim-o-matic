@@ -23,8 +23,63 @@ Then build from TypeScript (`sourcemap` used for debugging):
 npx tsc --watch *.ts --sourcemap
 ```
 
-Run `node watch.js`, then use your nominated mxid to react "👀" on a story to include. This will start logging event IDs.
+Run `node watch.js`, then use your nominated mxid to react with one of the emoji below on a story to include. This will start logging event IDs.
 
-When you have a collection, run: `node render.js`. This will check the `events` dir and read all files from the current date.
+To clear the stored list, use `node watch.js -c`. Do this for each new post or you will include previous entries.
 
-This will write some markdown to `out.md`, which will need some editing to make it presentable.
+When you have a collection, run: `node render.js`. This will read from the test room state list, and render the entries by writing some markdown to `out.md`, which will need some editing to make it presentable.
+
+## node watch --help
+
+```
+% node watch --help
+Usage: watch [options]
+
+Options:
+  -c, --clear  clear the stored events
+  -h, --help   display help for command
+```
+
+## node render --help
+
+```
+% node render --help
+Usage: render [options]
+
+Options:
+  -d, --debug    output all the json blocks, suppress header
+  -s, --summary  highlight missing summary blocks
+  -m, --media    download and process media
+  -p, --pings    get ping-room data
+  -w, --web      start a server to render the result
+  -h, --help     display help for command
+```
+
+## Emoji-Section map
+
+* 🌡️: Dept of *Status of Matrix* 🌡️
+* 📜: Dept of Spec 📜
+* 🎓️: Dept of GSoC 🎓️
+* 👥: Dept of P2P 👥
+* 🏢: Dept of Servers 🏢
+* 📥️: Synapse Deployment 📥️
+* 🌉: Dept of Bridges 🌉
+* 📱: Dept of Clients 📱
+* 🔐: Dept of Encryption 🔐
+* 🧰: Dept of SDKs and Frameworks 🧰
+* 🛠️: Dept of Ops 🛠
+* 🚀: Dept of Services 🚀
+* 🤷: Dept of Blockchain 🤷‍
+* 💡: Dept of Internet of Things 💡
+* 🤖: Dept of Bots 🤖
+* 📹: Dept of Event Videos 📹
+* 🗣️: Dept of Events and Talks 🗣️
+* 🛰️: Dept of Interesting Projects 🛰️
+* 🏗: Dept of *Built on Matrix* 🏗
+* 🧭: Dept of Guides 🧭
+* 🍕: Dept of Hackathons 🍕
+* 💰️: Dept of Jobs 💰️
+* 📰: Matrix in the News 📰
+* 🏟: New Public Rooms 🏟
+* 👐: Dept of Welcomes 👐
+* 💭: Final Thoughts 💭

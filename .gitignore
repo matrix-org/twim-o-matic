@@ -6,3 +6,4 @@ blog/
 *.js
 *.map
 out.md
+.DS_Store
