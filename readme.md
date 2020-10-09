@@ -2,7 +2,7 @@
 
 Can be used to help produce new editions of <https://matrix.org/twim>.
 
-Install everything from npm and setup needed dirs:
+Install everything from npm (Node 12 minimum needed) and setup needed dirs:
 
 ```bash
 npm i
