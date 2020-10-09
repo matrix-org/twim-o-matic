@@ -16,7 +16,7 @@ program
 program.parse(process.argv);
 
 LogService.setLogger(new RichConsoleLogger());
-LogService.setLevel(LogLevel.INFO);
+LogService.setLevel(LogLevel.WARN);
 
 //s207322_14908813_3872_546544_6599_42_3612_90453_16
 const config = require("./config/access_token.json")
@@ -67,11 +67,15 @@ client.on("room.event", async function (roomId, event) {
         return;
     }
     let matchedEmoji = watchEmoji.includes(event.content['m.relates_to'].key);
-    console.log(`Reaction event` +
+    let reactionLog = `Reaction event` +
         `\n\tfrom: ${event.sender}` +
         `\n\tkey: ${event.content['m.relates_to'].key}` +
         `\n\tevent: ${event.content['m.relates_to'].event_id}` +
-        `\n\tmatched: ${matchedEmoji} (${JSON.stringify(watchEmoji)})`);
+        `\n\tmatched: ${matchedEmoji}`;
+    if (! matchedEmoji) {
+        reactionLog += ` (${JSON.stringify(watchEmoji)})`;
+    }
+    console.log(reactionLog);
     if (!matchedEmoji) {
         return;
     }
