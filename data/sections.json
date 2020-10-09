@@ -96,6 +96,11 @@
             "chat client"
         ]
     },
+    "voip": {
+        "order": 1050,
+        "icon": "🤙",
+        "title": "Dept of VoIP 🤙"
+    },
     "encryption": {
         "order": 1100,
         "icon": "🔐",
