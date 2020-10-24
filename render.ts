@@ -75,7 +75,14 @@ async function getEvent(eventId) {
 }
 
 async function getUserDisplayname(mxid) {
-    let up = await client.getUserProfile(mxid)
+    let up;
+    try {
+        up = await client.getUserProfile(mxid)
+    } catch (e) {
+        up = "TODO MISSING display name for " + mxid;
+        console.log(e);
+    }
+    
     return up;
 }
 
