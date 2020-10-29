@@ -20,7 +20,10 @@
         "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at",
         "title": "Nheko"
     },
-    "fluffychat": {},
+    "fluffychat": {
+        "summary": "[FluffyChat](https://fluffychat.im) is a cute cross-platform matrix client. It is available for Andorid, iOS, Web and Desktop.",
+        "title": "FluffyChat"
+    },
     "quotient": {},
     "auto-invite-matrix-bot": {},
     "https://github.com/ananace/matrix-synapse": {
