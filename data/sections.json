@@ -178,8 +178,8 @@
     },
     "build": {
         "order": 2050,
-        "icon": "🏗",
-        "title": "Dept of *Built on Matrix* 🏗"
+        "icon": "🏗️",
+        "title": "Dept of *Built on Matrix* 🏗️"
     },
     "guides": {
         "order": 2100,
