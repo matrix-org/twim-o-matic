@@ -1,17 +1,23 @@
 html
     head
         title="TWIM preview"
+        style
+            include style.css
     body
-        each val in messages
-            div(style={float:"left", width: "75%"})
-                pre(style={"white-space":"pre-wrap"})=val.content
-                pre=val.event_id
-            div(style={float:"left"})
-                div
-                    each transform in val.transforms
-                        div
-                div
-                    textarea=val.notes
-                    button="Notes"
-            br(clear="all")
-            hr
+        table
+            each val in messages
+                tr
+                    td
+                        pre(style={"white-space":"pre-wrap"})=val.body
+                    td(class=val.expectedProject ? "" : "unknown")
+                        select
+                            option=""
+                            each p in projects
+                                option(selected=(val.expectedProject==p))=p
+                        button="Resubmit"
+                    td
+                       each transform in val.transforms
+                            div
+                    td
+                        textarea=val.notes
+                        button="Notes"

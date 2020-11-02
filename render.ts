@@ -10,6 +10,7 @@ import {
 } from "fs";
 import ping from "./ping";
 import getProjectInfo from "./getProjectInfo";
+var projects = require("./data/projects.json");
 const axios = require('axios').default;
 const { program } = require('commander');
 program
@@ -247,7 +248,10 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         content:`${titleLine}${debugText}${projectLine}${senderLine}${body}\n\n${notes?notes:""}\n`,
         event_id: event.event_id,
         notes: notes,
-        transforms: transforms
+        transforms: transforms,
+        section: section,
+        body: body,
+        expectedProject: projectInfo.project
     });
 }
 
@@ -285,17 +289,12 @@ function outputAll() {
     var result:string = "";
     result += generateHeader();
     result += `## Matrix Live 🎙\n\n`;
-    let separated = [];
 
     let sortedSections = Object.values(sections).sort((a:any, b:any) => {
         return a.order - b.order;
     });
     sortedSections.forEach((section: any) => {
         result += generateSection(section);
-
-        if (output[section.title]) {
-            separated = separated.concat(output[section.title])
-        }
     });
     
     result += pings;
@@ -315,8 +314,12 @@ function outputAll() {
         console.log(output[sections.clients.title])
 
         app.get('/', function(req, res) {
+            // flatten first
+            let t = (Object.values(output) as Array<Array<Object>>);
+            t = [].concat(...t);
             res.render('twim', {
-                messages: separated
+                messages: t,
+                projects: Object.keys(projects)
             });
         });
         let port = 9001
