@@ -1,6 +1,6 @@
 var request = require('request-promise');
 export default async function() {
-    const url = `https://maubot.xyz/_matrix/maubot/plugin/pingstat/!TdAwENXmXuMrCrFEFX:maunium.net/stats.json`;
+    const url = `https://maubot.xyz/_matrix/maubot/plugin/pingstat/!ping-v6:maunium.net/stats.json`;
     var result = "";
     await request(url, function (error, response, body) {
         if (error) {
