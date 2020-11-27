@@ -100,5 +100,9 @@
     "https://github.com/opsdroid/opsdroid": {
         "title": "Opsdroid",
         "section": "bots"
+    },
+    "https://github.com/ruma/ruma": {
+        "section": "sdks",
+        "summary": "[Ruma](https://www.ruma.io/) is a set of Rust library crates around Matrix"
     }
 }
