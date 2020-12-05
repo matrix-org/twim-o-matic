@@ -33,7 +33,7 @@
         "section": "sdks",
         "summary": "Ruma is a Rust project to create a comprehensive set of APIs for Matrix. Previously there was a Ruma homeserver project."
     },
-    "dendrite": {
+    "https://github.com/matrix-org/dendrite": {
         "title": "Dendrite",
         "summary": "Dendrite is a next-generation homeserver written in Go"
     },
@@ -104,5 +104,20 @@
     "https://github.com/ruma/ruma": {
         "section": "sdks",
         "summary": "[Ruma](https://www.ruma.io/) is a set of Rust library crates around Matrix"
+    },
+    "https://github.com/vranki/hemppa": {
+        "title": "Hemppa",
+        "summary": "Hemppa the Bot is a multipurpose bot for writing modules super easily in Python."
+    },
+    "https://github.com/matrix-org/synapse": {
+        "title": "Synapse",
+        "summary": "Synapse is a popular homeserver written in Python."
+    },
+    "https://hub.docker.com/r/trslimey/dendrite": {
+        "title": "Docker ARM images for Dendrite"
+    },
+    "https://git.feneas.org/jaywink/matrix-alertmanager": {
+        "title": "Matrix-Alertmanager",
+        "summary": "A bot to receive Alertmanager webhook events and forward them to chosen rooms."
     }
 }

@@ -238,7 +238,12 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
             projectLine = projectInfo.summary + `\n\n`;
         }
     else if (program.summary) {
-        if (! ["status", "synapse-deployment", "projects"].includes(projectInfo.section)) {
+        if (! [
+            sections["status"].title, 
+            sections["synapse-deployment"].title, 
+            sections["projects"].title, 
+            sections["spec"].title]
+            .includes(section)) {
             projectLine = `TODO MISSING SUMMARY LINE\n\n`;
         }
     }
