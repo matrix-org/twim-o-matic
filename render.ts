@@ -193,6 +193,9 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
     // insert missing gapped `>` after quoted headers
     body = body.replace(/(^> #*.*)\n>[^\n]/gm, `$1\n>\n> `);
 
+    // replace <br> with <br />
+    body = body.replace(/<br>/gm, "<br />");
+
     // insert matrix.to links for rooms
     const regex = /(#([a-z.-]+):([a-z.-]+)\b)/g;
     const subst = `[$1](https://matrix.to/#/$1)`;
