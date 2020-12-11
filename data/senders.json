@@ -539,5 +539,17 @@
   },
   "@zoe:zoisite.xyz": {
     "name": "zoe"
+  },
+  "@asbjorn:olli.ng": {
+    "name": "Asbjørn"
+  },
+  "@mschopen:uni-bielefeld.de": {
+    "name": "Marcus Schopen"
+  },
+  "@kaiyou:tedomum.net": {
+    "name": "kaiyou"
+  },
+  "@jojo:peek-a-boo.at": {
+    "name": "jojo"
   }
 }
