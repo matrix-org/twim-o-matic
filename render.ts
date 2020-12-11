@@ -168,7 +168,12 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
                 senderLine += `(https://matrix.to/#/${event.sender})`;
             }
         } else {
-            senderLine = `TODO CACHE MISSING NAME [${(await getUserDisplayname(event.sender)).displayname}](https://matrix.to/#/${event.sender})`;
+            let sendersRaw = readFileSync("data/senders.json", {encoding: 'utf-8'});
+            let sendersJson = JSON.parse(sendersRaw);
+            let displayname = (await getUserDisplayname(event.sender)).displayname;
+            sendersJson[event.sender] = { name: displayname }
+            writeFileSync("data/senders.json", JSON.stringify(sendersJson, null, 2));
+            senderLine = `[${displayname}](https://matrix.to/#/${event.sender})`;
 
         }
         senderLine += ` ${getSaidBookism()}:\n\n`;
