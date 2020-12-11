@@ -13,9 +13,9 @@ mkdir blog/img
 
 To use, create a file at `config/access_token.json` and include three fields:
 
-* accessToken - the accessToken of the account that will used for watching (in the live environment this is @twim-o-matic:bpulse.org)
-* homeserver - the homeserver of the watching account
-* userId - the userId which we permit to add new 👀
+* `accessToken` - the accessToken of the account that will used for watching (in the live environment this is @twim-o-matic:bpulse.org)
+* `homeserver` - the homeserver of the watching account
+* `userId` - the userId which we permit to add new emoji
 
 Then build from TypeScript (`sourcemap` used for debugging):
 
@@ -28,6 +28,8 @@ Run `node watch.js`, then use your nominated mxid to react with one of the emoji
 To clear the stored list, use `node watch.js -c`. Do this for each new post or you will include previous entries.
 
 When you have a collection, run: `node render.js`. This will read from the test room state list, and render the entries by writing some markdown to `out.md`, which will need some editing to make it presentable.
+
+If an entry is from the `userId` nominated in the config, that entry will not be prefixed with `>`, since we don't consider it to be quoted.
 
 Note the options for `render` in the section below. In general, to produce a final output you will use `render -mp`, `-m` to process media, and `-p` to process results from `#ping:maunium.net`.
 
