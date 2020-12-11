@@ -314,10 +314,10 @@ function outputAll() {
     result += generateSignOff();
 
     // wrap bare urls
-    const regex = /([^(])(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+~#?&\/\/=]*))/mg;
-    const subst = `$1<$2>`;
-    result = result.replace(regex, subst);
-    //console.log(result);
+    // const regex = /([^(])(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+~#?&\/\/=]*))/mg;
+    // const subst = `$1<$2>`;
+    //result = result.replace(regex, subst);
+
     writeFileSync("out.md", result);
 
     if (program.web) {
