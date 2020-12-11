@@ -64,7 +64,7 @@ Options:
 * 🎓️: Dept of GSoC 🎓️
 * 👥: Dept of P2P 👥
 * 🏢: Dept of Servers 🏢
-* 📥️: Synapse Deployment 📥️
+* 📥️: Homeserver Deployment 📥️
 * 🌉: Dept of Bridges 🌉
 * 📱: Dept of Clients 📱
 * 🔐: Dept of Encryption 🔐

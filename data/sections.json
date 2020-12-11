@@ -45,7 +45,7 @@
     "synapse-deployment": {
         "order": 800,
         "icon": "📥️",
-        "title": "Synapse Deployment 📥️",
+        "title": "Homeserver Deployment 📥️",
         "hints": [
             "k8s-optimized synapse image",
             "synapse images",
