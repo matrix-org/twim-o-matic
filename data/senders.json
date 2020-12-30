@@ -563,5 +563,14 @@
   },
   "@timokoesters:fachschaften.org": {
     "name": "timokoesters"
+  },
+  "@robintown:townsendandsmith.ml": {
+    "name": "Robin"
+  },
+  "@andycuccaro:matrix.org": {
+    "name": "Andy"
+  },
+  "@tobiasfella:kde.org": {
+    "name": "Tobias Fella"
   }
 }
