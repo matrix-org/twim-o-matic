@@ -551,5 +551,17 @@
   },
   "@jojo:peek-a-boo.at": {
     "name": "jojo"
+  },
+  "@daenney:g33k.se": {
+    "name": "daenney"
+  },
+  "@qg:supercable.onl": {
+    "name": "qg"
+  },
+  "@neilalexander:dendrite.matrix.org": {
+    "name": "neilalexander"
+  },
+  "@timokoesters:fachschaften.org": {
+    "name": "timokoesters"
   }
 }
