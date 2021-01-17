@@ -572,5 +572,20 @@
   },
   "@tobiasfella:kde.org": {
     "name": "Tobias Fella"
+  },
+  "@compu-42:matrix.org": {
+    "name": "compu"
+  },
+  "@select:matrix.org": {
+    "name": "select"
+  },
+  "@spiritcroc:spiritcroc.de": {
+    "name": "SpiritCroc"
+  },
+  "@carl:kde.org": {
+    "name": "Carl Schwan"
+  },
+  "@p-e-w:matrix.org": {
+    "name": "p-e-w"
   }
 }
