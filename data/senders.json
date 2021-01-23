@@ -587,5 +587,24 @@
   },
   "@p-e-w:matrix.org": {
     "name": "p-e-w"
+  },
+  "@kim:sosnowkadub.de": {},
+  "@glandos:matrix.org": {
+    "name": "Adrien"
+  },
+  "@s3858136:tu-dresden.de": {
+    "name": "Marvin Dropp"
+  },
+  "@s8108530:tu-dresden.de": {
+    "name": "Christian Bruchatz"
+  },
+  "@tusooa:tusooa.xyz": {
+    "name": "tusooa"
+  },
+  "@eric:beeperhq.com": {
+    "name": "Eric Migicovsky"
+  },
+  "@erdnaxeli:cervoi.se": {
+    "name": "erdnaxeli"
   }
 }
