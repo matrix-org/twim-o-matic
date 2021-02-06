@@ -218,6 +218,11 @@
         "icon": "👐",
         "title": "Dept of Welcomes 👐"
     },
+    "sadness": {
+        "order": 3500,
+        "icon": "☹️",
+        "title": "Dept of Sadness ☹️"
+    },
     "thoughts": {
         "order": 4000,
         "icon": "💭",
