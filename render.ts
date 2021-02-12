@@ -28,7 +28,7 @@ const userId = require("./config/access_token.json").userId;
 const senders = require("./data/senders.json");
 const sections = require("./data/sections.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
-let testRoomId = "!UpevrrilOuZdxLWcHj:bpulse.org";
+let testRoomId = require("./config/access_token.json").testRoomId;
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
