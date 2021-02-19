@@ -621,5 +621,14 @@
   },
   "@grin:grin.hu": {
     "name": "grin"
+  },
+  "@tntclaus:matrix.org": {
+    "name": "tntclaus"
+  },
+  "@kilian:kernkraftwerk.lol": {
+    "name": "kilian"
+  },
+  "@lukas:lihotzki.de": {
+    "name": "Lukas Lihotzki"
   }
 }
