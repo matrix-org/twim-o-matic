@@ -23,18 +23,14 @@ const config = require("./config/access_token.json")
 const homeserverUrl = config.homeserver;
 const accessToken = config.accessToken;
 const userId = config.userId;
-const testRoomId = config.testRoomId;
+const adminRoomId = config.adminRoomId;
 const storage = new SimpleFsStorageProvider("config/twim-o-matic-reader.json");
 const sections = require("./data/sections.json");
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
 if (program.clear) {
-    if (client.sendStateEvent(testRoomId, "b.twim", "entries", {entries: []})) {
-        console.log("Events cleared");
-    } else {
-        console.log("Events not cleared, error");
-    }
+    clear();
 }
 
 
@@ -54,6 +50,11 @@ console.log("twim-o-matic is watching for the following emoji:");
 console.log(JSON.stringify(watchEmoji));
 
 client.on("room.event", async function (roomId, event) {
+    if (roomId === adminRoomId) {
+        handleAdminCommand(event);
+        return;
+    }
+
     if (roomId !== activeRoom) {
         return;
     }
@@ -85,11 +86,22 @@ client.on("room.event", async function (roomId, event) {
     );
 });
 
+function handleAdminCommand(event) {
+    if (! event.content || ! event.content.body || ! (event.content.body[0] === "!")) {
+        return;
+    }
+    let command = event.content.body;
+    console.log("Command: " + command);
+    if (command === "!clear") {
+        clear();
+    }
+}
+
 async function processMatch(event_id, key) {
     appendFileSync(`events/events-${watchDate}.txt`, `${event_id},${key}\n`);
     let entries = {entries: []};
     try {
-        entries = await client.getRoomStateEvent(testRoomId, "b.twim", "entries");
+        entries = await client.getRoomStateEvent(adminRoomId, "b.twim", "entries");
         if (! entries.entries.includes(event_id)) {
             entries.entries.push({
                 events: [event_id],
@@ -97,9 +109,21 @@ async function processMatch(event_id, key) {
                 notes: [],
                 transforms: []
             });
-            client.sendStateEvent(testRoomId, "b.twim", "entries", entries);
+            client.sendStateEvent(adminRoomId, "b.twim", "entries", entries);
         }
     } catch (ex) {
         console.log(ex.body);
     } 
+}
+
+function clear() {
+    if (client.sendStateEvent(adminRoomId, "b.twim", "entries", {entries: []})) {
+        let clearSuccess = "Events cleared";
+        console.log(clearSuccess);
+        client.sendText(adminRoomId, clearSuccess);
+    } else {
+        let clearFailed = "Events not cleared, error"
+        console.log(clearFailed);
+        client.sendText(adminRoomId, clearFailed);
+    }
 }
