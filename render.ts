@@ -6,7 +6,7 @@ import {
     readdirSync,
     readFileSync,
     writeFileSync,
-    createWriteStream
+    createWriteStream, existsSync, mkdirSync
 } from "fs";
 import ping from "./ping";
 import getProjectInfo from "./getProjectInfo";
@@ -29,6 +29,7 @@ const senders = require("./data/senders.json");
 const sections = require("./data/sections.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
 let adminRoomId = require("./config/access_token.json").adminRoomId;
+const media_folder = "blog/img/";
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
@@ -83,7 +84,7 @@ async function getUserDisplayname(mxid) {
         up = "TODO MISSING display name for " + mxid;
         console.log(e);
     }
-    
+
     return up;
 }
 
@@ -126,7 +127,7 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         // do nothing, leave it as 'todo'
     }
     section = sections[section].title;
-    
+
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const score = reactions.map(r => r.count).reduce(reducer);
@@ -210,14 +211,21 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
     body = body.trim();
 
     if (["m.video", "m.image"].includes(event.content.msgtype)) {
-        if (! program.media) return;
+        if (!program.media) return;
         if (event.content.url) {
             titleLine = "### TODO GET IMAGE\n\n";
             var url = "https://matrix.org/_matrix/media/r0/download/" + event.content.url.replace('mxc://', '');
             var filename = body.replace('> ', '').replace(/ /g, "");
             filename = `${ds()}-${event.event_id.substring(1,6)}-${filename}`;
-            downloadImage(url, `blog/img/${filename}`);
-            body = `![${filename}](/blog/img/${filename})`;
+            if (!existsSync(media_folder)){
+                try {
+                    mkdirSync(media_folder, { recursive: true });
+                } catch (e) {
+                    console.log(`Unable to create folders: ${e.body}`);
+                }
+            }
+            downloadImage(url, `${media_folder}${filename}`);
+            body = `![${filename}](${media_folder}${filename})`;
             if (prevSender === event.sender) {
                 output[prevSection][output[prevSection].length-1].content += `\n${body}\n`;
                 written = true;
@@ -247,9 +255,9 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         }
     else if (program.summary) {
         if (! [
-            sections["status"].title, 
-            sections["synapse-deployment"].title, 
-            sections["projects"].title, 
+            sections["status"].title,
+            sections["synapse-deployment"].title,
+            sections["projects"].title,
             sections["spec"].title]
             .includes(section)) {
             projectLine = `TODO MISSING SUMMARY LINE\n\n`;
@@ -268,17 +276,17 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
     });
 }
 
-async function downloadImage (url, path) {  
+async function downloadImage (url, path) {
     const writer = createWriteStream(path);
-  
+
     const response = await axios({
       url,
       method: 'GET',
       responseType: 'stream'
     })
-  
+
     response.data.pipe(writer)
-  
+
     return new Promise((resolve, reject) => {
       writer.on('finish', resolve)
       writer.on('error', reject)
@@ -309,7 +317,7 @@ function outputAll() {
     sortedSections.forEach((section: any) => {
         result += generateSection(section);
     });
-    
+
     result += pings;
     result += generateSignOff();
 
@@ -378,7 +386,7 @@ async function main() {
     if (program.pings) {
         pings = await ping();
     }
-    
+
     outputAll();
 }
 
