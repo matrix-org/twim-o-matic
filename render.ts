@@ -28,7 +28,7 @@ const userId = require("./config/access_token.json").userId;
 const senders = require("./data/senders.json");
 const sections = require("./data/sections.json");
 const storage = new SimpleFsStorageProvider("config/twim-o-matic.json");
-let testRoomId = require("./config/access_token.json").testRoomId;
+let adminRoomId = require("./config/access_token.json").adminRoomId;
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
@@ -343,10 +343,10 @@ function outputAll() {
 }
 
 async function addNoteToEvent(event_id, note) {
-    let eventsToHandle = await client.getRoomStateEvent(testRoomId, "b.twim", "entries");
+    let eventsToHandle = await client.getRoomStateEvent(adminRoomId, "b.twim", "entries");
     let index = eventsToHandle.findIndex(e=> e.events[0] === event_id);
     eventsToHandle[index].notes[0] = note;
-    await client.sendStateEvent(testRoomId, "b.twim", "entries", eventsToHandle);
+    await client.sendStateEvent(adminRoomId, "b.twim", "entries", eventsToHandle);
 }
 
 function generateSection(section) {
@@ -362,7 +362,7 @@ function generateSection(section) {
 }
 
 async function main() {
-    let eventsToHandle = await client.getRoomStateEvent(testRoomId, "b.twim", "entries");
+    let eventsToHandle = await client.getRoomStateEvent(adminRoomId, "b.twim", "entries");
     for (var entry of eventsToHandle.entries) {
         try {
             let event = await getEvent(entry.events[0]);
