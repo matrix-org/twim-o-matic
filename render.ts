@@ -11,6 +11,7 @@ import {
 import ping from "./ping";
 import getProjectInfo from "./getProjectInfo";
 var projects = require("./data/projects.json");
+const ping_rooms = require("./data/ping_rooms.json").rooms;
 const axios = require('axios').default;
 const { program } = require('commander');
 program
@@ -83,7 +84,7 @@ async function getUserDisplayname(mxid) {
         up = "TODO MISSING display name for " + mxid;
         console.log(e);
     }
-    
+
     return up;
 }
 
@@ -126,7 +127,7 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         // do nothing, leave it as 'todo'
     }
     section = sections[section].title;
-    
+
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const score = reactions.map(r => r.count).reduce(reducer);
@@ -247,9 +248,9 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         }
     else if (program.summary) {
         if (! [
-            sections["status"].title, 
-            sections["synapse-deployment"].title, 
-            sections["projects"].title, 
+            sections["status"].title,
+            sections["synapse-deployment"].title,
+            sections["projects"].title,
             sections["spec"].title]
             .includes(section)) {
             projectLine = `TODO MISSING SUMMARY LINE\n\n`;
@@ -268,17 +269,17 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
     });
 }
 
-async function downloadImage (url, path) {  
+async function downloadImage (url, path) {
     const writer = createWriteStream(path);
-  
+
     const response = await axios({
       url,
       method: 'GET',
       responseType: 'stream'
     })
-  
+
     response.data.pipe(writer)
-  
+
     return new Promise((resolve, reject) => {
       writer.on('finish', resolve)
       writer.on('error', reject)
@@ -309,7 +310,7 @@ function outputAll() {
     sortedSections.forEach((section: any) => {
         result += generateSection(section);
     });
-    
+
     result += pings;
     result += generateSignOff();
 
@@ -376,9 +377,15 @@ async function main() {
         }
     }
     if (program.pings) {
-        pings = await ping();
+        pings += `## Dept of Ping 🏓\n\n`;
+        pings += `Here we reveal, rank, and applaud the homeservers with the lowest ping, as measured by [pingbot](https://github.com/maubot/echo), a [maubot](https://github.com/maubot/maubot) that you can host on your own server.\n\n`;
+
+        for (const ping_room of ping_rooms) {
+            const ping_url = `https://maubot.xyz/_matrix/maubot/plugin/pingstat/${ping_room.room_id}/stats.json`
+            pings += await ping(ping_url, ping_room.alias);
+        }
     }
-    
+
     outputAll();
 }
 
