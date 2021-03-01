@@ -2,5 +2,6 @@
     "accessToken": "",
     "userId": "@benpa:matrix.org",
     "homeserver": "https://matrix.bpulse.org",
-    "adminRoomId": ""
+    "adminRoomId": "",
+    "twimRoomId": ""
 }

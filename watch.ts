@@ -7,8 +7,9 @@ import {
     RichConsoleLogger
 } from "matrix-bot-sdk";
 import {
-    writeFileSync,
     appendFileSync,
+    existsSync,
+    mkdirSync
 } from "fs";
 
 const {program} = require('commander');
@@ -27,6 +28,7 @@ const userId = config.userId;
 const adminRoomId = config.adminRoomId;
 const storage = new SimpleFsStorageProvider("config/twim-o-matic-reader.json");
 const sections = require("./data/sections.json");
+const events_folder = "events";
 
 const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
@@ -38,7 +40,7 @@ if (program.clear) {
 AutojoinRoomsMixin.setupOnClient(client);
 client.start().then(() => console.log("Client started!"));
 
-const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
+const twimRoomId = config.twimRoomId;
 const activeRoom = twimRoomId;
 const watchDate = new Date().toISOString();
 
@@ -124,6 +126,9 @@ function handleAdminCommand(event) {
 }
 
 async function processMatch(event_id, key, reaction_event_id) {
+    if (!existsSync(events_folder)){
+        mkdirSync(events_folder, { recursive: true });
+    }
     appendFileSync(`events/events-${watchDate}.txt`, `${event_id},${key}\n`);
     let entries = {entries: []};
     try {
