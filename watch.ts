@@ -37,7 +37,7 @@ if (program.clear) {
 AutojoinRoomsMixin.setupOnClient(client);
 client.start().then(() => console.log("Client started!"));
 
-const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
+const twimRoomId = config.twimRoomId;
 const activeRoom = twimRoomId;
 const watchDate = new Date().toISOString();
 
@@ -113,7 +113,7 @@ async function processMatch(event_id, key) {
         }
     } catch (ex) {
         console.log(ex.body);
-    } 
+    }
 }
 
 function clear() {

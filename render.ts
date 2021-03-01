@@ -34,7 +34,7 @@ const client = new MatrixClient(homeserverUrl, accessToken, storage);
 
 //client.start().then(() => console.log("Client started!"));
 
-const twimRoomId = "!xYvNcQPhnkrdUmYczI:matrix.org";
+const twimRoomId = require("./config/access_token.json").twimRoomId;
 
 
 function getSaidBookism() {
@@ -83,7 +83,7 @@ async function getUserDisplayname(mxid) {
         up = "TODO MISSING display name for " + mxid;
         console.log(e);
     }
-    
+
     return up;
 }
 
@@ -126,7 +126,7 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         // do nothing, leave it as 'todo'
     }
     section = sections[section].title;
-    
+
     // find the score (sum of all reactions)
     const reducer = (accumulator, currentValue) => accumulator + currentValue;
     const score = reactions.map(r => r.count).reduce(reducer);
@@ -247,9 +247,9 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
         }
     else if (program.summary) {
         if (! [
-            sections["status"].title, 
-            sections["synapse-deployment"].title, 
-            sections["projects"].title, 
+            sections["status"].title,
+            sections["synapse-deployment"].title,
+            sections["projects"].title,
             sections["spec"].title]
             .includes(section)) {
             projectLine = `TODO MISSING SUMMARY LINE\n\n`;
@@ -268,17 +268,17 @@ async function handleEvent(event, title, mode, sectionOverride, notes, transform
     });
 }
 
-async function downloadImage (url, path) {  
+async function downloadImage (url, path) {
     const writer = createWriteStream(path);
-  
+
     const response = await axios({
       url,
       method: 'GET',
       responseType: 'stream'
     })
-  
+
     response.data.pipe(writer)
-  
+
     return new Promise((resolve, reject) => {
       writer.on('finish', resolve)
       writer.on('error', reject)
@@ -309,7 +309,7 @@ function outputAll() {
     sortedSections.forEach((section: any) => {
         result += generateSection(section);
     });
-    
+
     result += pings;
     result += generateSignOff();
 
@@ -378,7 +378,7 @@ async function main() {
     if (program.pings) {
         pings = await ping();
     }
-    
+
     outputAll();
 }
 
