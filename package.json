@@ -10,7 +10,7 @@
     "express": "^4.17.1",
     "matrix-bot-sdk": "^0.5.4",
     "moment": "^2.27.0",
-    "pug": "^3.0.0",
+    "pug": "^3.0.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.5"
   },
