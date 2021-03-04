@@ -11,6 +11,7 @@ import {
 import ping from "./ping";
 import getProjectInfo from "./getProjectInfo";
 var projects = require("./data/projects.json");
+const ping_rooms = require("./data/ping_rooms.json").rooms;
 const axios = require('axios').default;
 const { program } = require('commander');
 program
@@ -384,7 +385,13 @@ async function main() {
         }
     }
     if (program.pings) {
-        pings = await ping();
+        pings += `## Dept of Ping 🏓\n\n`;
+        pings += `Here we reveal, rank, and applaud the homeservers with the lowest ping, as measured by [pingbot](https://github.com/maubot/echo), a [maubot](https://github.com/maubot/maubot) that you can host on your own server.\n\n`;
+
+        for (const ping_room of ping_rooms) {
+            const ping_url = `https://maubot.xyz/_matrix/maubot/plugin/pingstat/${ping_room.room_id}/stats.json`
+            pings += await ping(ping_url, ping_room.alias);
+        }
     }
 
     outputAll();

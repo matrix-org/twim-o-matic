@@ -1,0 +1,12 @@
+{
+  "rooms": [
+    {
+      "room_id": "!ping-v6:maunium.net",
+      "alias": "#ping:maunium.net"
+    },
+    {
+      "room_id": "!ping-no-synapse:maunium.net",
+      "alias": "#ping-no-synapse:maunium.net"
+    }
+  ]
+}
