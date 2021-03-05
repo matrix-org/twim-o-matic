@@ -17,7 +17,7 @@
         "summary": "[mx-puppet-voipms](https://github.com/zoenb/mx-puppet-voipms) is a puppeting bridge for the SMS functionallity provided by [voip.ms](https://voip.ms). It is based on [mx-puppet-bridge](https://github.com/Sorunome/mx-puppet-bridge)."
     },
     "nheko": {
-        "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE (with the notable exception being device verification for now) and intends to be full featured and nice to look at",
+        "summary": "[Nheko](https://github.com/Nheko-Reborn/nheko) is a desktop client using Qt, Boost.Asio and C++17. It supports E2EE and intends to be full featured and nice to look at",
         "title": "Nheko"
     },
     "fluffychat": {
@@ -119,5 +119,17 @@
     "https://git.feneas.org/jaywink/matrix-alertmanager": {
         "title": "Matrix-Alertmanager",
         "summary": "A bot to receive Alertmanager webhook events and forward them to chosen rooms."
+    },
+    "hydrogen": {
+        "title": "Hydrogen",
+        "summary": "A minimal Matrix chat client, focused on performance, offline functionality, and broad browser support. https://github.com/vector-im/hydrogen-web/"
+    },
+    "https://gitlab.com/kazv/libkazv": {
+        "title": "libkazv (and the Kazv Project)",
+        "summary": "[libkazv](https://gitlab.com/kazv/libkazv) is a sans-io C++ (gnu++17) client library"
+    },
+    "https://github.com/mirukana/mirage": {
+        "title": "Mirage",
+        "summary": "A fancy, customizable, keyboard-operable Matrix chat client for encrypted and decentralized communication. Written in Qt/QML and Python, currently in alpha. https://github.com/mirukana/mirage"
     }
 }
