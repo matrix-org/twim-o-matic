@@ -19,9 +19,11 @@ program
   .option('-s, --summary', 'highlight missing summary blocks')
   .option('-m, --media', 'download and process media')
   .option('-p, --pings', 'get ping-room data')
-  .option('-w, --web', 'start a server to render the result');
+  .option('-w, --web', 'start a server to render the result')
+  .option('-h, --html', 'produce an HTML file to go with the output');
 program.parse(process.argv);
 import moment = require('moment');
+import mdit = require('markdown-it');
 
 const homeserverUrl = require("./config/access_token.json").homeserver;
 const accessToken = require("./config/access_token.json").accessToken;
@@ -348,6 +350,10 @@ function outputAll() {
         app.listen(port, function() {
             console.log("listening on " + port);
         })
+    }
+
+    if (program.html) {
+        writeFileSync("out.html", mdit().render(result));
     }
 }
 
