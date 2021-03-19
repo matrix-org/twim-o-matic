@@ -11,9 +11,10 @@ import {
     existsSync,
     mkdirSync
 } from "fs";
-const { program } = require('commander');
+
+const {program} = require('commander');
 program
-  .option('-c, --clear', 'clear the stored events')
+    .option('-c, --clear', 'clear the stored events')
 program.parse(process.argv);
 
 LogService.setLogger(new RichConsoleLogger());
@@ -44,8 +45,12 @@ const activeRoom = twimRoomId;
 const watchDate = new Date().toISOString();
 
 const watchEmoji = Object.values(sections)
-    .filter(function (s: any) { return s.icon !== undefined })
-    .map(function (s: any) { return s.icon });
+    .filter(function (s: any) {
+        return s.icon !== undefined
+    })
+    .map(function (s: any) {
+        return s.icon
+    });
 watchEmoji.push("🧹");
 watchEmoji.push("👀");
 console.log("twim-o-matic is watching for the following emoji:");
@@ -63,33 +68,54 @@ client.on("room.event", async function (roomId, event) {
     if (event.sender !== userId) {
         return
     }
-    if (event.type !== "m.reaction") {
-        return
-    }
-    if (!event.content || !event.content['m.relates_to']) {
+    if (event.type == "m.reaction") {
+        if (!event.content || !event.content['m.relates_to']) {
+            return;
+        }
+        let matchedEmoji = watchEmoji.includes(event.content['m.relates_to'].key);
+        let reactionLog = `Reaction event` +
+            `\n\tfrom: ${event.sender}` +
+            `\n\tkey: ${event.content['m.relates_to'].key}` +
+            `\n\tevent: ${event.content['m.relates_to'].event_id}` +
+            `\n\tmatched: ${matchedEmoji}`;
+        if (!matchedEmoji) {
+            reactionLog += ` (${JSON.stringify(watchEmoji)})`;
+        }
+        console.log(reactionLog);
+        if (!matchedEmoji) {
+            return;
+        }
+        processMatch(
+            event.content['m.relates_to'].event_id,
+            event.content['m.relates_to'].key,
+            event.event_id
+        );
+    } else if (event.type == "m.room.redaction") {
+        if (!event.redacts) {
+            return;
+        }
+        let entries = {entries: []};
+        try {
+            entries = await client.getRoomStateEvent(adminRoomId, "b.twim", "entries");
+            for (const entry of entries.entries) {
+                for (let i = 0; i < entry.events.length ; i++) {
+                    if (entry.events[i].reaction_event == event.redacts) {
+                        console.log(`RedactionEvent found that redacts ${event.redacts}`);
+                        entry.events.splice(i, 1);
+                    }
+                }
+            }
+            client.sendStateEvent(adminRoomId, "b.twim", "entries", entries);
+        } catch (ex) {
+            console.log(ex.body);
+        }
+    } else {
         return;
     }
-    let matchedEmoji = watchEmoji.includes(event.content['m.relates_to'].key);
-    let reactionLog = `Reaction event` +
-        `\n\tfrom: ${event.sender}` +
-        `\n\tkey: ${event.content['m.relates_to'].key}` +
-        `\n\tevent: ${event.content['m.relates_to'].event_id}` +
-        `\n\tmatched: ${matchedEmoji}`;
-    if (! matchedEmoji) {
-        reactionLog += ` (${JSON.stringify(watchEmoji)})`;
-    }
-    console.log(reactionLog);
-    if (!matchedEmoji) {
-        return;
-    }
-    processMatch(
-        event.content['m.relates_to'].event_id,
-        event.content['m.relates_to'].key
-    );
 });
 
 function handleAdminCommand(event) {
-    if (! event.content || ! event.content.body || ! (event.content.body[0] === "!")) {
+    if (!event.content || !event.content.body || !(event.content.body[0] === "!")) {
         return;
     }
     let command = event.content.body;
@@ -99,7 +125,7 @@ function handleAdminCommand(event) {
     }
 }
 
-async function processMatch(event_id, key) {
+async function processMatch(event_id, key, reaction_event_id) {
     if (!existsSync(events_folder)){
         mkdirSync(events_folder, { recursive: true });
     }
@@ -107,9 +133,12 @@ async function processMatch(event_id, key) {
     let entries = {entries: []};
     try {
         entries = await client.getRoomStateEvent(adminRoomId, "b.twim", "entries");
-        if (! entries.entries.includes(event_id)) {
+        if (!entries.entries.includes(event_id)) {
             entries.entries.push({
-                events: [event_id],
+                events: [{
+                    event: event_id,
+                    reaction_event: reaction_event_id
+                }],
                 key: key,
                 notes: [],
                 transforms: []
