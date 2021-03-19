@@ -373,7 +373,7 @@ async function main() {
     let eventsToHandle = await client.getRoomStateEvent(adminRoomId, "b.twim", "entries");
     for (var entry of eventsToHandle.entries) {
         try {
-            let event = await getEvent(entry.events[0]);
+            let event = await getEvent(entry.events[0].event);
             entry.transforms.forEach(t => {
                 event.content.body = event.content.body.replace(new RegExp(t[0], t[1]))
             });
