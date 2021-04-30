@@ -39,7 +39,7 @@
     },
     "https://git.koesters.xyz/timo/conduit": {
         "section": "servers",
-        "summary": "A Matrix homeserver written in Rust https://conduit.rs"
+        "summary": "Conduit: A Matrix homeserver written in Rust https://conduit.rs"
     },
     "https://github.com/devinr528/rumatui": {
         "summary": "WIP Command line Matrix client using matrix-rust-sdk"
