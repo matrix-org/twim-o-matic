@@ -654,5 +654,20 @@
   },
   "@zeratax:dmnd.sh": {
     "name": "zeratax"
+  },
+  "@aine:etke.cc": {
+    "name": "Aine"
+  },
+  "@hifi:vi.fi": {
+    "name": "hifi"
+  },
+  "@michael:perthchat.org": {
+    "name": "Michael"
+  },
+  "@odanobunaga:matrix.org": {
+    "name": "Oda Nobunaga"
+  },
+  "@samuel:mozilla.org": {
+    "name": "Samuel"
   }
 }
