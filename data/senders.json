@@ -669,5 +669,11 @@
   },
   "@samuel:mozilla.org": {
     "name": "Samuel"
+  },
+  "@farribeiro:matrix.org": {
+    "name": "farribeiro"
+  },
+  "@airportline:matrix.org": {
+    "name": "R1 Airport"
   }
 }
