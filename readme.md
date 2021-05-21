@@ -2,6 +2,8 @@
 
 Can be used to help produce new editions of <https://matrix.org/twim>.
 
+## Setup
+
 Install everything from npm (Node 12 minimum needed) and setup needed dirs:
 
 ```bash
@@ -32,6 +34,11 @@ When you have a collection, run: `node render.js`. This will read from the test 
 If an entry is from the `userId` nominated in the config, that entry will not be prefixed with `>`, since we don't consider it to be quoted.
 
 Note the options for `render` in the section below. In general, to produce a final output you will use `render -mp`, `-m` to process media, and `-p` to process results from `#ping:maunium.net`.
+
+## Deploy
+
+`render` will produce a file, `out.md`. Make any final fixes needed to this markdown, then copy it to the relevent
+location at `https://github.com/matrix-org/matrix.org/tree/master/gatsby/content/blog`, making sure to use a `*.mdx` extension.
 
 ## node watch --help
 
