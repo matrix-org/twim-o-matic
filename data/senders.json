@@ -675,5 +675,20 @@
   },
   "@airportline:matrix.org": {
     "name": "R1 Airport"
+  },
+  "@cvwright:matrix.org": {
+    "name": "cvwright"
+  },
+  "@thib:ergaster.org": {
+    "name": "Thib"
+  },
+  "@jplatte:flipdot.org": {
+    "name": "jplatte"
+  },
+  "@jfkimmes:matrix.org": {
+    "name": "jfkimmes"
+  },
+  "@freaktechnik:humanoids.be": {
+    "name": "freaktechnik"
   }
 }
