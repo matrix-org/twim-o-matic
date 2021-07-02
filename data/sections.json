@@ -206,8 +206,8 @@
     },
     "rooms": {
         "order": 2500,
-        "icon": "🏟",
-        "title": "New Public Rooms 🏟",
+        "icon": "🏟️",
+        "title": "New Public Rooms 🏟️",
         "hints": [
             "created a room",
             "new room"
