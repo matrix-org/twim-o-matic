@@ -690,5 +690,24 @@
   },
   "@freaktechnik:humanoids.be": {
     "name": "freaktechnik"
-  }
+  },
+  "@krazykirby99999:matrix.org": {
+    "name": "krazykirby99999"
+  },
+  "@numero6:codelutin.com": {
+    "name": "numéro6"
+  },
+  "@cat:feline.support": {
+    "name": "Cat"
+  },
+  "@denise.a:vector.modular.im": {
+    "name": "Denise [away]"
+  },
+  "@pioneer:matrix.org": {
+    "name": "[pioneer]"
+  },
+  "@mamie:mamieserv.fr": {
+    "name": "Mamie"
+  },
+  "@sumner:sumnerevans.com": {}
 }
